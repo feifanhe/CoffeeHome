@@ -1,0 +1,78 @@
+E:\CoffeeHome\bin\Release\CoffeeHome.exe.config
+E:\CoffeeHome\bin\Release\CoffeeHome.mdf
+E:\CoffeeHome\bin\Release\CoffeeHome_log.ldf
+E:\CoffeeHome\bin\Release\CoffeeHome.exe
+E:\CoffeeHome\bin\Release\CoffeeHome.pdb
+E:\CoffeeHome\obj\Release\CoffeeHome.BigCheckBox.resources
+E:\CoffeeHome\obj\Release\CoffeeHome.ItemTypeSelectionForm.resources
+E:\CoffeeHome\obj\Release\CoffeeHome.MainForm.resources
+E:\CoffeeHome\obj\Release\CoffeeHome.NewTradeForm.resources
+E:\CoffeeHome\obj\Release\CoffeeHome.Properties.Resources.resources
+E:\CoffeeHome\obj\Release\CoffeeHome.csproj.GenerateResource.Cache
+E:\CoffeeHome\obj\Release\CoffeeHome.exe
+E:\CoffeeHome\obj\Release\CoffeeHome.pdb
+E:\CoffeeHome\obj\Release\CoffeeHome.csprojResolveAssemblyReference.cache
+\\VBOXSVR\Workspaces\CoffeeHome\bin\Release\CoffeeHome.exe.config
+\\VBOXSVR\Workspaces\CoffeeHome\obj\Release\CoffeeHome.exe
+\\VBOXSVR\Workspaces\CoffeeHome\obj\Release\CoffeeHome.pdb
+\\VBOXSVR\Workspaces\CoffeeHome\obj\Release\CoffeeHome.csprojResolveAssemblyReference.cache
+\\VBOXSVR\Workspaces\CoffeeHome\obj\Release\CoffeeHome.BigCheckBox.resources
+\\VBOXSVR\Workspaces\CoffeeHome\obj\Release\CoffeeHome.ItemTypeSelectionForm.resources
+\\VBOXSVR\Workspaces\CoffeeHome\obj\Release\CoffeeHome.MainForm.resources
+\\VBOXSVR\Workspaces\CoffeeHome\obj\Release\CoffeeHome.NewItemForm.resources
+\\VBOXSVR\Workspaces\CoffeeHome\obj\Release\CoffeeHome.NewMemberForm.resources
+\\VBOXSVR\Workspaces\CoffeeHome\obj\Release\CoffeeHome.NewTradeForm.resources
+\\VBOXSVR\Workspaces\CoffeeHome\obj\Release\CoffeeHome.Properties.Resources.resources
+\\VBOXSVR\Workspaces\CoffeeHome\obj\Release\CoffeeHome.csproj.GenerateResource.Cache
+\\VBOXSVR\Workspaces\CoffeeHome\bin\Release\CoffeeHome.mdf
+\\VBOXSVR\Workspaces\CoffeeHome\bin\Release\CoffeeHome_log.ldf
+\\VBOXSVR\Workspaces\CoffeeHome\bin\Release\CoffeeHome.exe
+\\VBOXSVR\Workspaces\CoffeeHome\bin\Release\CoffeeHome.pdb
+C:\Users\Fei-fan He\Desktop\CoffeeHome\bin\Release\CoffeeHome.exe.config
+C:\Users\Fei-fan He\Desktop\CoffeeHome\obj\Release\CoffeeHome.exe
+C:\Users\Fei-fan He\Desktop\CoffeeHome\obj\Release\CoffeeHome.pdb
+C:\Users\Fei-fan He\Desktop\CoffeeHome\bin\Release\CoffeeHome.mdf
+C:\Users\Fei-fan He\Desktop\CoffeeHome\bin\Release\CoffeeHome_log.ldf
+C:\Users\Fei-fan He\Desktop\CoffeeHome\bin\Release\CoffeeHome.exe
+C:\Users\Fei-fan He\Desktop\CoffeeHome\bin\Release\CoffeeHome.pdb
+C:\Users\Fei-fan He\Desktop\CoffeeHome\obj\Release\CoffeeHome.csprojResolveAssemblyReference.cache
+C:\Users\Fei-fan He\Desktop\CoffeeHome\obj\Release\CoffeeHome.BigCheckBox.resources
+C:\Users\Fei-fan He\Desktop\CoffeeHome\obj\Release\CoffeeHome.ItemTypeSelectionForm.resources
+C:\Users\Fei-fan He\Desktop\CoffeeHome\obj\Release\CoffeeHome.MainForm.resources
+C:\Users\Fei-fan He\Desktop\CoffeeHome\obj\Release\CoffeeHome.NewTradeForm.resources
+C:\Users\Fei-fan He\Desktop\CoffeeHome\obj\Release\CoffeeHome.Properties.Resources.resources
+C:\Users\Fei-fan He\Desktop\CoffeeHome\obj\Release\CoffeeHome.csproj.GenerateResource.Cache
+C:\Users\Fei-fan He\Desktop\CoffeeHome\obj\Release\CoffeeHome.SearchMemberForm.resources
+E:\CoffeeHome\obj\Release\CoffeeHome.SearchMemberForm.resources
+E:\CoffeeHome\obj\Release\CoffeeHome.ItemDataForm.resources
+E:\CoffeeHome\obj\Release\CoffeeHome.MemberDataForm.resources
+E:\CoffeeHome\obj\Release\CoffeeHome.SearchItemForm.resources
+E:\CoffeeHome\obj\Release\CoffeeHome.ItemTypeEditForm.resources
+C:\Users\Fei-fan He\Desktop\CoffeeHome\obj\Release\CoffeeHome.ItemTypeEditForm.resources
+C:\Users\Fei-fan He\Desktop\CoffeeHome\obj\Release\CoffeeHome.ItemDataForm.resources
+C:\Users\Fei-fan He\Desktop\CoffeeHome\obj\Release\CoffeeHome.MemberDataForm.resources
+C:\Users\Fei-fan He\Desktop\CoffeeHome\obj\Release\CoffeeHome.SearchItemForm.resources
+C:\Users\Fei-fan He\Desktop\CoffeeHome\obj\Release\CoffeeHome.MemberRemarksEditForm.resources
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\bin\Release\CoffeeHome.exe.config
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.exe
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.pdb
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\bin\Release\CoffeeHome.mdf
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\bin\Release\CoffeeHome_log.ldf
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\bin\Release\CoffeeHome.exe
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\bin\Release\CoffeeHome.pdb
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.csprojResolveAssemblyReference.cache
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.BigCheckBox.resources
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.ItemTypeEditForm.resources
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.ItemTypeSelectionForm.resources
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.MainForm.resources
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.ItemDataForm.resources
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.MemberDataForm.resources
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.MemberRemarksEditForm.resources
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.TradeForm.resources
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.Properties.Resources.resources
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.SearchMemberForm.resources
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.SearchItemForm.resources
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.SettingsForm.resources
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.csproj.GenerateResource.Cache
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.AccountYearUserControl.resources
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.TestForm.resources
