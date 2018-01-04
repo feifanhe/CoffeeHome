@@ -17,8 +17,8 @@ namespace CoffeeHome
         public AccountYearUserControl()
         {
             InitializeComponent();
-
         }
+
         public void SetDataSet(CoffeeHomeDataSet CoffeeHomeDataSet)
         {
             this.CoffeeHomeDataSet = CoffeeHomeDataSet;

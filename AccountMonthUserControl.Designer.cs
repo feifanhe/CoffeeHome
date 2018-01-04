@@ -367,6 +367,7 @@
             this.AccountMonthMonthComboBox.Name = "AccountMonthMonthComboBox";
             this.AccountMonthMonthComboBox.Size = new System.Drawing.Size(121, 35);
             this.AccountMonthMonthComboBox.TabIndex = 1;
+            this.AccountMonthMonthComboBox.SelectedIndexChanged += new System.EventHandler(this.AccountMonthMonthComboBox_SelectedIndexChanged);
             // 
             // AccountMonthYearComboBox
             // 
@@ -377,6 +378,7 @@
             this.AccountMonthYearComboBox.Name = "AccountMonthYearComboBox";
             this.AccountMonthYearComboBox.Size = new System.Drawing.Size(121, 35);
             this.AccountMonthYearComboBox.TabIndex = 0;
+            this.AccountMonthYearComboBox.SelectedIndexChanged += new System.EventHandler(this.AccountMonthYearComboBox_SelectedIndexChanged);
             // 
             // AccountMonthUserControl
             // 

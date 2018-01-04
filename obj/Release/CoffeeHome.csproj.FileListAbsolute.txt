@@ -76,3 +76,5 @@ C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.SettingsF
 C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.csproj.GenerateResource.Cache
 C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.AccountYearUserControl.resources
 C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.TestForm.resources
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.AccountMonthUserControl.resources
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.AccountDayUserControl.resources

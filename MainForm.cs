@@ -173,7 +173,8 @@ namespace CoffeeHome
             MainPanelList.Add(this.MemberPanel);
             MainPanelList.Add(this.ItemPanel);
             MainPanelList.Add(this.AccountPanel);
-            MainPanelList.Add(this.AccountMonthPanel);
+            MainPanelList.Add(this.AccountDayUserControl);
+            MainPanelList.Add(this.AccountMonthUserControl);
             MainPanelList.Add(this.AccountYearUserControl);
         }
 
@@ -184,7 +185,6 @@ namespace CoffeeHome
             HeaderPanelList.Add(this.ItemHeaderPanel);
             HeaderPanelList.Add(this.AccountHeaderPanel);
         }
-
 
         private void HomeButton_Click(object sender, EventArgs e)
         {
@@ -674,94 +674,11 @@ namespace CoffeeHome
         private void AccountMonthButton_Click(object sender, EventArgs e)
         {
             this.HideAllPanel();
-            this.AccountMonthPanel.Visible = true;
+            this.AccountMonthUserControl.Visible = true;
             this.AccountHeaderPanel.Visible = true;
-
-            // Find the earliest year
-            DataRow[] TradeRows = this.CoffeeHomeDataSet.Trade.Select("Time = Min(Time)");
-            CoffeeHomeDataSet.TradeRow EarliestRow = TradeRows[0] as CoffeeHomeDataSet.TradeRow;
-            DateTime EarliestDateTime = EarliestRow.Time;
-
-            int RecentYear = DateTime.Today.Year;
-            int EarliestYear = EarliestDateTime.Year;
-            int RecentMonth = DateTime.Today.Month;
-
-            this.AccountMonthYearComboBox.Items.Clear();
-            for (int year = RecentYear; year >= EarliestYear; year--)
-            {
-                this.AccountMonthYearComboBox.Items.Add(year.ToString() + " 年");
-            }
-            this.AccountMonthYearComboBox.SelectedIndex = 0;
-
-            this.AccountMonthMonthComboBox.Items.Clear();
-            for (int month = 1; month <= 12; month++)
-            {
-                this.AccountMonthMonthComboBox.Items.Add(month.ToString() + " 月");
-            }
-            this.AccountMonthMonthComboBox.SelectedIndex = RecentMonth - 1;
-
-            ShowMonthAccount();
-        }
-
-        private void AccountMonthYearComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ShowMonthAccount();
-        }
-
-        private void AccountMonthMonthComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ShowMonthAccount();
-        }
-
-        private void ShowMonthAccount()
-        {
-            if (this.AccountMonthYearComboBox.SelectedIndex == -1 || this.AccountMonthMonthComboBox.SelectedIndex == -1)
-            {
-                return;
-            }
-            int RecentYear = DateTime.Today.Year;
-            int RecentMonth = DateTime.Today.Month;
-            int SelectedYear = RecentYear - this.AccountMonthYearComboBox.SelectedIndex;
-            int SelectedMonth = this.AccountMonthMonthComboBox.SelectedIndex + 1;
-            DateTime FirstDayOfMonth = new DateTime(SelectedYear, SelectedMonth, 1);
-            DateTime FirstDayOfNextMonth = FirstDayOfMonth.AddMonths(1);
-
-            string TimeQuery = "Time >= #" + FirstDayOfMonth.ToShortDateString() + "# AND Time < #" + FirstDayOfNextMonth.ToShortDateString() + "#";
-            string ReceiptQuery = "Receipt = 1";
-            string NoReceiptQuery = "Receipt = 0";
-            string CreditCardQuery = "PaymentTypeID = 2";
-            string DeliveryQuery = "PaymentTypeID = 3";
-            string CashQuery = "PaymentTypeID = 1";
-
-            // Get data rows
-            DataRow[] AccountRows = this.CoffeeHomeDataSet.Account.Select(TimeQuery);
-            DataRow[] ReceiptRows = this.CoffeeHomeDataSet.Trade.Select(TimeQuery + " AND " + ReceiptQuery);
-            DataRow[] NoReceiptRows = this.CoffeeHomeDataSet.Trade.Select(TimeQuery + " AND " + NoReceiptQuery);
-            DataRow[] CredirCardtRows = this.CoffeeHomeDataSet.Trade.Select(TimeQuery + " AND " + CreditCardQuery);
-            DataRow[] DeliveryRows = this.CoffeeHomeDataSet.Trade.Select(TimeQuery + " AND " + DeliveryQuery);
-            DataRow[] CashRows = this.CoffeeHomeDataSet.Trade.Select(TimeQuery + " AND " + CashQuery);
-
-            // Count subtotals
-            int ReceiptSubtotal = this.CountSubtotal(ReceiptRows);
-            int NoReceiptSubtotal = this.CountSubtotal(NoReceiptRows);
-            int CreditCardSubtotal = this.CountSubtotal(CredirCardtRows);
-            int DeliverySubtotal = this.CountSubtotal(DeliveryRows);
-            int CashSubtotal = this.CountSubtotal(CashRows);
-
-            // Show subtotals on TextBoxes
-            this.AccountMonthReceiptTextBox.Text = ReceiptSubtotal.ToString();
-            this.AccountMonthNoReceiptTextBox.Text = NoReceiptSubtotal.ToString();
-            this.AccountMonthCreditCardTextBox.Text = CreditCardSubtotal.ToString();
-            this.AccountMonthDeliveryTextBox.Text = DeliverySubtotal.ToString();
-            this.AccountMonthCashTextBox.Text = CashSubtotal.ToString();
-
-            // Count mistake
-            int Mistake = CountMistake(AccountRows);
-            this.AccountMonthMistakeTextBox.Text = Mistake.ToString();
-
-            // Count achievement
-            int Achievement = ReceiptSubtotal + NoReceiptSubtotal;
-            this.AccountMonthAchievementTextBox.Text = Achievement.ToString();
+            this.AccountMonthUserControl.SetDataSet(this.CoffeeHomeDataSet);
+            this.AccountMonthUserControl.SetForm();
+            this.AccountMonthUserControl.ShowForm();
         }
 
         #endregion
@@ -776,8 +693,10 @@ namespace CoffeeHome
         {
             this.ShowDayAccount();
             this.HideAllPanel();
-            this.AccountPanel.Visible = true;
+            //this.AccountPanel.Visible = true;
+            this.AccountDayUserControl.Visible = true;
             this.AccountHeaderPanel.Visible = true;
+            this.AccountDayUserControl.SetDataSet(this.CoffeeHomeDataSet);
         }
 
         private void ShowDayAccount()
@@ -1059,10 +978,6 @@ namespace CoffeeHome
 
         #endregion
 
-        private void AccountMonthPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         #endregion
 
