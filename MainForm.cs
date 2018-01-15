@@ -45,62 +45,14 @@ namespace CoffeeHome
             // TODO: 這行程式碼會將資料載入 'coffeeHomeDataSet.Member' 資料表。您可以視需要進行移動或移除。
             this.MemberTableAdapter.Fill(this.CoffeeHomeDataSet.Member);
 
-            this.AccountDateTimePicker.Value = DateTime.Today;
-        }
-
-        #endregion
-
-        #region Home
-
-        private void NonMemberTradeButton_Click(object sender, EventArgs e)
-        {
-            TradeForm Form = TradeForm.NewTrade(0);
-            if (Form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            try
             {
-                // Insert Trade
-                CoffeeHomeDataSet.TradeRow TradeRow = this.CoffeeHomeDataSet.Trade.NewTradeRow();
-                TradeRow.MemberID = 0;
-                TradeRow.Time = DateTime.Now;
-                TradeRow.PaymentTypeID = Form.PaymentTypeID;
-                TradeRow.Receipt = Form.Receipt;
-                TradeRow.Subtotal = Form.Subtotal;
-                this.CoffeeHomeDataSet.Trade.AddTradeRow(TradeRow);
-                this.TradeBindingSource.EndEdit();
-                this.TradeTableAdapter.Update(this.CoffeeHomeDataSet.Trade);
-
-                // Insert TradeItem
-                int TradeID = TradeRow.ID;
-                foreach (TradeItem Item in Form.TradeItems)
-                {
-                    CoffeeHomeDataSet.TradeItemRow TradeItemRow = this.CoffeeHomeDataSet.TradeItem.NewTradeItemRow();
-                    TradeItemRow.TradeID = TradeID;
-                    TradeItemRow.ItemID = Item.ItemID;
-                    TradeItemRow.Amount = Item.Amount;
-                    TradeItemRow.RoastDegreeID = Item.RoastDegreeID;
-                    this.CoffeeHomeDataSet.TradeItem.AddTradeItemRow(TradeItemRow);
-                }
-                this.TradeItemBindingSource.EndEdit();
-                this.TradeItemTableAdapter.Update(this.CoffeeHomeDataSet.TradeItem);
+                this.HomeRichTextBox.LoadFile("CoffeeHome.rtf");
             }
-        }
-
-        private void SettingLabel_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            catch(Exception ex)
             {
-                SettingsForm Form = new SettingsForm();
-                Form.ShowDialog();
+                Console.WriteLine(ex.Message);
             }
-        }
-
-        private void SettingLabel_MouseEnter(object sender, EventArgs e)
-        {
-            this.SettingLabel.BackColor = System.Drawing.Color.FromArgb(229, 217, 206);
-        }
-
-        private void SettingLabel_MouseLeave(object sender, EventArgs e)
-        {
-            this.SettingLabel.BackColor = System.Drawing.Color.FromArgb(255, 242, 230);
         }
 
         #endregion
@@ -170,9 +122,9 @@ namespace CoffeeHome
         private void InitializeMainPanelList()
         {
             MainPanelList.Add(this.HomePanel);
-            MainPanelList.Add(this.MemberPanel);
+            MainPanelList.Add(this.MemberListPanel);
+            MainPanelList.Add(this.MemberDetailsPanel);
             MainPanelList.Add(this.ItemPanel);
-            MainPanelList.Add(this.AccountPanel);
             MainPanelList.Add(this.AccountDayUserControl);
             MainPanelList.Add(this.AccountMonthUserControl);
             MainPanelList.Add(this.AccountYearUserControl);
@@ -196,7 +148,7 @@ namespace CoffeeHome
         private void MemberButton_Click(object sender, EventArgs e)
         {
             this.HideAllPanel();
-            this.MemberPanel.Visible = true;
+            this.MemberListPanel.Visible = true;
             this.MemberHeaderPanel.Visible = true;
             this.MemberListDataGridView.DataSource = null;
             this.MemberListPanel.BringToFront();
@@ -225,41 +177,93 @@ namespace CoffeeHome
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
-                this.HideAllPanel();
-                this.AccountPanel.Visible = true;
-                this.AccountHeaderPanel.Visible = true;
                 this.SetIdleTimer();
-                this.ShowDayAccount();
+
+                this.HideAllPanel();
+                this.AccountDayUserControl.Visible = true;
+                this.AccountHeaderPanel.Visible = true;
+                this.AccountDayUserControl.SetDataSet(this.CoffeeHomeDataSet);
+                this.AccountDayUserControl.SetForm();
+                this.AccountDayUserControl.ShowForm();
             }
+        }
+
+        #endregion
+
+        #region Home Events
+
+        private void NonMemberTradeButton_Click(object sender, EventArgs e)
+        {
+            TradeForm Form = TradeForm.NewTrade(0);
+            if (Form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                // Insert Trade
+                CoffeeHomeDataSet.TradeRow TradeRow = this.CoffeeHomeDataSet.Trade.NewTradeRow();
+                TradeRow.MemberID = 0;
+                TradeRow.Time = DateTime.Now;
+                TradeRow.PaymentTypeID = Form.PaymentTypeID;
+                TradeRow.Receipt = Form.Receipt;
+                TradeRow.Subtotal = Form.Subtotal;
+                this.CoffeeHomeDataSet.Trade.AddTradeRow(TradeRow);
+                this.TradeBindingSource.EndEdit();
+                this.TradeTableAdapter.Update(this.CoffeeHomeDataSet.Trade);
+
+                // Insert TradeItem
+                int TradeID = TradeRow.ID;
+                foreach (TradeItem Item in Form.TradeItems)
+                {
+                    CoffeeHomeDataSet.TradeItemRow TradeItemRow = this.CoffeeHomeDataSet.TradeItem.NewTradeItemRow();
+                    TradeItemRow.TradeID = TradeID;
+                    TradeItemRow.ItemID = Item.ItemID;
+                    TradeItemRow.Amount = Item.Amount;
+                    TradeItemRow.RoastDegreeID = Item.RoastDegreeID;
+                    this.CoffeeHomeDataSet.TradeItem.AddTradeItemRow(TradeItemRow);
+                }
+                this.TradeItemBindingSource.EndEdit();
+                this.TradeItemTableAdapter.Update(this.CoffeeHomeDataSet.TradeItem);
+            }
+        }
+
+        private void SettingLabel_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                SettingsForm Form = new SettingsForm();
+                Form.ShowDialog();
+            }
+        }
+
+        private void SettingLabel_MouseEnter(object sender, EventArgs e)
+        {
+            this.SettingLabel.BackColor = System.Drawing.Color.FromArgb(229, 217, 206);
+        }
+
+        private void SettingLabel_MouseLeave(object sender, EventArgs e)
+        {
+            this.SettingLabel.BackColor = System.Drawing.Color.FromArgb(255, 242, 230);
         }
 
         #endregion
 
         #region Member Events
 
-        private void MemberNewButton_Click(object sender, EventArgs e)
+        Dictionary<int, MemberDetailsUserControl> MemberDetailsMap = new Dictionary<int, MemberDetailsUserControl>();
+        Dictionary<int, MemberDetailsTabUserControl> MemberDetailsTabMap = new Dictionary<int, MemberDetailsTabUserControl>();
+
+        private MemberDetailsUserControl GetCurrentFocusMemberDetails()
         {
-            // Show new member dialog
-            MemberDataForm Form = new MemberDataForm();
-            if (Form.ShowDialog() == DialogResult.OK)
+            if (this.MemberDetailsPanel.Controls.Count > 0)
             {
-                CoffeeHomeDataSet.MemberRow NewMemberRow = this.CoffeeHomeDataSet.Member.NewMemberRow();
-                NewMemberRow.Name = Form.MemberName;
-                NewMemberRow.Sex = (byte)Form.Sex;
-                NewMemberRow.PhoneNumber = Form.PhoneNumber;
-                NewMemberRow.ZipCode = Form.ZipCode;
-                NewMemberRow.Address = Form.Address;
-                NewMemberRow.Email = Form.Email;
-                NewMemberRow.Remarks = Form.Remarks;
-
-                this.CoffeeHomeDataSet.Member.Rows.Add(NewMemberRow);
-                this.MemberBindingSource.EndEdit();
-                this.MemberTableAdapter.Update(this.CoffeeHomeDataSet.Member);
-
-                this.MemberBindingSource.Filter = "ID = " + NewMemberRow.ID.ToString();
-                this.MemberListDataGridView.DataSource = this.MemberBindingSource;
-                this.MemberListPanel.BringToFront();
+                return this.MemberDetailsPanel.Controls[0] as MemberDetailsUserControl;
             }
+            return null;
+        }
+
+        private void MemberBackButton_Click(object sender, EventArgs e)
+        {
+            HideAllPanel();
+            this.MemberHeaderPanel.Visible = true;
+            this.MemberListPanel.Visible = true;
         }
 
         private void MemberSearchButton_Click(object sender, EventArgs e)
@@ -292,17 +296,47 @@ namespace CoffeeHome
 
                 this.MemberBindingSource.Filter = Query;
                 this.MemberListDataGridView.DataSource = this.MemberBindingSource;
-                this.MemberListPanel.BringToFront();
+
+                HideAllPanel();
+                this.MemberHeaderPanel.Visible = true;
+                this.MemberListPanel.Visible = true;
+            }
+        }
+
+        private void MemberNewButton_Click(object sender, EventArgs e)
+        {
+            // Show new member dialog
+            MemberDataForm Form = new MemberDataForm();
+            if (Form.ShowDialog() == DialogResult.OK)
+            {
+                CoffeeHomeDataSet.MemberRow NewMemberRow = this.CoffeeHomeDataSet.Member.NewMemberRow();
+                NewMemberRow.Name = Form.MemberName;
+                NewMemberRow.Sex = (byte)Form.Sex;
+                NewMemberRow.PhoneNumber = Form.PhoneNumber;
+                NewMemberRow.ZipCode = Form.ZipCode;
+                NewMemberRow.Address = Form.Address;
+                NewMemberRow.Email = Form.Email;
+                NewMemberRow.Remarks = Form.Remarks;
+
+                this.CoffeeHomeDataSet.Member.Rows.Add(NewMemberRow);
+                this.MemberBindingSource.EndEdit();
+                this.MemberTableAdapter.Update(this.CoffeeHomeDataSet.Member);
+
+                this.MemberBindingSource.Filter = "ID = " + NewMemberRow.ID.ToString();
+                this.MemberListDataGridView.DataSource = this.MemberBindingSource;
+
+                HideAllPanel();
+                this.MemberHeaderPanel.Visible = true;
+                this.MemberListPanel.Visible = true;
             }
         }
 
         private void MemberNewTradeButton_Click(object sender, EventArgs e)
         {
-            if (this.MemberListDataGridView.SelectedRows.Count == 0)
-                return;
+            MemberDetailsUserControl MemberDetails = GetCurrentFocusMemberDetails();
+            if (MemberDetails == null) return;
 
-            // Show trade dialog
-            int MemberID = (int)this.MemberListDataGridView.SelectedRows[0].Cells[0].Value;
+            int MemberID = MemberDetails.MemberID;
             TradeForm Form = TradeForm.NewTrade(MemberID);
             if (Form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -331,41 +365,16 @@ namespace CoffeeHome
                 this.TradeItemBindingSource.EndEdit();
                 this.TradeItemTableAdapter.Update(this.CoffeeHomeDataSet.TradeItem);
 
-                this.SetMemberDetailsPanel(MemberID);
+                MemberDetails.RefreshForm();
             }
         }
-
-        private void MemberDeleteButton_Click(object sender, EventArgs e)
-        {
-            bool Deleted = false;
-            foreach (DataGridViewRow Row in this.MemberListDataGridView.SelectedRows)
-            {
-                int ID = (int)Row.Cells[0].Value;
-                string Name = (string)Row.Cells[1].Value;
-                DialogResult Result = MessageBox.Show("是否刪除會員 " + Name + " ?", "刪除會員", MessageBoxButtons.YesNo);
-                if (Result == DialogResult.Yes)
-                {
-                    this.CoffeeHomeDataSet.Member.FindByID(ID).Delete();
-                    Deleted = true;
-                }
-            }
-
-            if (Deleted)
-            {
-                this.MemberBindingSource.EndEdit();
-                this.MemberTableAdapter.Update(this.CoffeeHomeDataSet.Member);
-                this.MemberListPanel.BringToFront();
-            }
-        }
-
 
         private void MemberEditButton_Click(object sender, EventArgs e)
         {
-            if (this.MemberListDataGridView.SelectedRows.Count == 0)
-                return;
+            MemberDetailsUserControl MemberDetails = GetCurrentFocusMemberDetails();
+            if (MemberDetails == null) return;
 
-            // Show trade dialog
-            int MemberID = (int)this.MemberListDataGridView.SelectedRows[0].Cells[0].Value;
+            int MemberID = MemberDetails.MemberID;
             CoffeeHomeDataSet.MemberRow MemberRow = this.CoffeeHomeDataSet.Member.FindByID(MemberID);
             MemberDataForm Form = new MemberDataForm(MemberRow);
             if (Form.ShowDialog() == DialogResult.OK)
@@ -377,29 +386,25 @@ namespace CoffeeHome
                 MemberRow.Address = Form.Address;
                 MemberRow.Email = Form.Email;
                 MemberRow.Remarks = Form.Remarks;
-
-                this.MemberBindingSource.EndEdit();
                 this.MemberTableAdapter.Update(this.CoffeeHomeDataSet.Member);
+
+                MemberDetails.RefreshForm();
             }
         }
 
-        private void MemberNameLabel_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void MemberDeleteButton_Click(object sender, EventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                if (this.MemberListDataGridView.SelectedRows.Count == 0)
-                    return;
+            MemberDetailsUserControl MemberDetails = GetCurrentFocusMemberDetails();
+            if (MemberDetails == null) return;
 
-                int MemberID = (int)this.MemberListDataGridView.SelectedRows[0].Cells[0].Value;
-                CoffeeHomeDataSet.MemberRow MemberRow = this.CoffeeHomeDataSet.Member.FindByID(MemberID);
-                MemberRemarksEditForm Form = new MemberRemarksEditForm();
-                Form.Remarks = MemberRow.Remarks;
-                if (Form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    MemberRow.Remarks = Form.Remarks;
-                    this.MemberBindingSource.EndEdit();
-                    this.MemberTableAdapter.Update(this.CoffeeHomeDataSet.Member);
-                }
+            int MemberID = MemberDetails.MemberID;
+            string MemberName = MemberDetails.MemberName;
+            DialogResult Result = MessageBox.Show("是否刪除會員 " + MemberName + " ?", "刪除會員", MessageBoxButtons.YesNo);
+            if (Result == DialogResult.Yes)
+            {
+                this.CoffeeHomeDataSet.Member.FindByID(MemberID).Delete();
+                this.MemberTableAdapter.Update(this.CoffeeHomeDataSet.Member);
+                this.CloseMember(MemberID);
             }
         }
 
@@ -408,8 +413,8 @@ namespace CoffeeHome
             if (e.RowIndex >= 0)
             {
                 int MemberID = (int)this.MemberListDataGridView[0, e.RowIndex].Value;
-                this.SetMemberDetailsPanel(MemberID);
-                this.MemberDetailsPanel.BringToFront();
+                string MemberName = (string)this.MemberListDataGridView[1, e.RowIndex].Value;
+                this.NewMemberDetails(MemberID);
             }
         }
 
@@ -422,61 +427,71 @@ namespace CoffeeHome
             }
         }
 
-        private void SetMemberDetailsPanel(int MemberID)
+        private void NewMemberDetails(int MemberID)
         {
-            CoffeeHomeDataSet.MemberRow MemberRow = this.CoffeeHomeDataSet.Member.FindByID(MemberID);
+            MemberDetailsUserControl MemberDetails = new MemberDetailsUserControl();
+            this.MemberDetailsPanel.Controls.Add(MemberDetails);
+            this.MemberDetailsMap.Add(MemberID, MemberDetails);
+            MemberDetails.SetDataSet(CoffeeHomeDataSet);
+            MemberDetails.SetForm(MemberID);
+            MemberDetails.Dock = DockStyle.Fill;
+            MemberDetails.BringToFront();
 
-            // Fill member data
-            this.MemberNameTextBox.Text = MemberRow.Name;
-            this.MemberSexTextBox.Text = this.CoffeeHomeDataSet.Sex.FindByCode(MemberRow.Sex).DisplayName;
-            this.MemberPhoneNumberTextBox.Text = MemberRow.PhoneNumber;
-            this.MemberZipCodeTextBox.Text = MemberRow.ZipCode;
-            this.MemberAddressTextBox.Text = MemberRow.Address;
-            this.MemberEmailTextBox.Text = MemberRow.Email;
+            MemberDetailsTabUserControl MemberDetailsTab = new MemberDetailsTabUserControl();
+            this.MemberHeaderPanel.Controls.Add(MemberDetailsTab);
+            this.MemberDetailsTabMap.Add(MemberID, MemberDetailsTab);
+            MemberDetailsTab.SetForm(MemberID, MemberDetails.MemberName);
+            MemberDetailsTab.ClickMemberName += new EventHandler(ClickMemberTab);
+            MemberDetailsTab.ClickCloseButton += new EventHandler(CloseMemberTab);
+            MemberDetailsTab.SetClickMemberName();
+            MemberDetailsTab.SetClickCloseButton();
+            MemberDetailsTab.Dock = DockStyle.Left;
+            MemberDetailsTab.BringToFront();
 
-            // Fill member trade details
-            this.MemberDetailsDataGridView.Rows.Clear();
-            DataRow[] TradeRows = this.CoffeeHomeDataSet.Trade.Select("MemberID = " + MemberID.ToString());
-            foreach (CoffeeHomeDataSet.TradeRow TradeRow in TradeRows)
+            HideAllPanel();
+            MemberDetailsPanel.Visible = true;
+            MemberHeaderPanel.Visible = true;
+        }
+
+        private void ClickMemberTab(object sender, EventArgs e)
+        {
+            Button MemberNameButton = sender as Button;
+            MemberDetailsTabUserControl MemberDetailsTab = MemberNameButton.Parent as MemberDetailsTabUserControl;
+            int MemberID = MemberDetailsTab.MemberID;
+            MemberDetailsMap[MemberID].BringToFront();
+
+            HideAllPanel();
+            MemberHeaderPanel.Visible = true;
+            MemberDetailsPanel.Visible = true;
+        }
+
+        private void CloseMemberTab(object sender, EventArgs e)
+        {
+            Button CloseButton = sender as Button;
+            MemberDetailsTabUserControl MemberDetailsTab = CloseButton.Parent as MemberDetailsTabUserControl;
+            int MemberID = MemberDetailsTab.MemberID;
+            this.CloseMember(MemberID);
+        }
+
+        private void CloseMember(int MemberID)
+        {
+            MemberDetailsUserControl MemberDetails = MemberDetailsMap[MemberID];
+            MemberDetailsTabUserControl MemberDetailsTab = MemberDetailsTabMap[MemberID];
+
+            this.MemberDetailsPanel.Controls.Remove(MemberDetails);
+            this.MemberHeaderPanel.Controls.Remove(MemberDetailsTab);
+            this.MemberDetailsMap.Remove(MemberID);
+            this.MemberDetailsTabMap.Remove(MemberID);
+
+            MemberDetails.Dispose();
+            MemberDetailsTab.Dispose();
+
+            if (!MemberDetailsPanel.HasChildren)
             {
-                DataRow[] TradeItemRows = this.CoffeeHomeDataSet.TradeItem.Select("TradeID = " + TradeRow.ID.ToString());
-                for (int i = 0; i < TradeItemRows.Length; i++)
-                {
-                    CoffeeHomeDataSet.TradeItemRow TradeItemRow = TradeItemRows[i] as CoffeeHomeDataSet.TradeItemRow;
-                    CoffeeHomeDataSet.ItemRow ItemRow = this.CoffeeHomeDataSet.Item.FindByID(TradeItemRow.ItemID);
-                    string ItemName = (ItemRow == null) ? string.Empty : ItemRow.Name;
-                    string ItemType = (ItemRow == null) ? string.Empty : GetItemTypeName(ItemRow.TypeID);
-                    string RoastDegree = this.CoffeeHomeDataSet.RoastDegree.FindByID(TradeItemRow.RoastDegreeID).Name;
-                    if (i == 0)
-                    {
-                        this.MemberDetailsDataGridView.Rows.Add(
-                            TradeRow.Time.ToString(),
-                            ItemName,
-                            ItemType,
-                            TradeItemRow.Amount,
-                            RoastDegree);
-                    }
-                    else
-                    {
-                        this.MemberDetailsDataGridView.Rows.Add(
-                            "",
-                            ItemName,
-                            ItemType,
-                            TradeItemRow.Amount,
-                            RoastDegree);
-                    }
-                }
+                HideAllPanel();
+                MemberHeaderPanel.Visible = true;
+                MemberListPanel.Visible = true;
             }
-        }
-
-        private void MemberNameLabel_MouseEnter(object sender, EventArgs e)
-        {
-            this.MemberNameLabel.BackColor = System.Drawing.Color.Gainsboro;
-        }
-
-        private void MemberNameLabel_MouseLeave(object sender, EventArgs e)
-        {
-            this.MemberNameLabel.BackColor = System.Drawing.Color.White;
         }
 
         #endregion
@@ -685,295 +700,14 @@ namespace CoffeeHome
 
         #region Day Account Functions
 
-        private DateTime Day;
-        private DateTime NextDay;
-        private CoffeeHomeDataSet.AccountRow AccountRow;
-
         private void AccountDayButton_Click(object sender, EventArgs e)
         {
-            this.ShowDayAccount();
             this.HideAllPanel();
-            //this.AccountPanel.Visible = true;
             this.AccountDayUserControl.Visible = true;
             this.AccountHeaderPanel.Visible = true;
             this.AccountDayUserControl.SetDataSet(this.CoffeeHomeDataSet);
-        }
-
-        private void ShowDayAccount()
-        {
-            this.Day = this.AccountDateTimePicker.Value;
-            this.NextDay = Day.AddDays(1);
-            string TimeQuery = "Time >= #" + this.Day.ToShortDateString() + "# AND Time < #" + this.NextDay.ToShortDateString() + "#";
-
-            // Load account row
-            DataRow[] AccountRows = this.CoffeeHomeDataSet.Account.Select(TimeQuery);
-            if (AccountRows.Length == 0)
-            {
-                this.AccountRow = this.CoffeeHomeDataSet.Account.NewAccountRow();
-                this.AccountRow.Time = Day;
-                this.AccountRow.WorkingCapital = int.Parse(ConfigurationManager.AppSettings["WorkingCapital"]);
-                this.CoffeeHomeDataSet.Account.AddAccountRow(this.AccountRow);
-                this.AccountBindingSource.EndEdit();
-                this.AccountTableAdapter.Update(this.CoffeeHomeDataSet.Account);
-            }
-            else
-            {
-                this.AccountRow = this.CoffeeHomeDataSet.Account.FindByID((int)AccountRows[0][0]);
-            }
-
-            this.AccountDetailsDataGridView.Rows.Clear();
-            this.LoadDayAccount();
-            this.ShowAccountDetails();
-        }
-
-        private void LoadDayAccount()
-        {
-            int WorkingCapital = this.AccountRow.WorkingCapital;
-            int Mistake = this.AccountRow.Mistake;
-            int Mistake2 = this.AccountRow.Mistake2;
-            int Mistake3 = this.AccountRow.Mistake3;
-
-            this.WorkingCapitalTextBox.Text = WorkingCapital.ToString();
-            this.MistakeTextBox.Text = Mistake.ToString();
-            this.MistakeTextBox2.Text = Mistake2.ToString();
-            this.MistakeTextBox3.Text = Mistake3.ToString();
-
-            string TimeQuery = "Time >= #" + this.Day.ToShortDateString() + "# AND Time < #" + this.NextDay.ToShortDateString() + "#";
-            string ReceiptQuery = "Receipt = 1";
-            string NoReceiptQuery = "Receipt = 0";
-            string CreditCardQuery = "PaymentTypeID = 2";
-            string DeliveryQuery = "PaymentTypeID = 3";
-            string CashQuery = "PaymentTypeID = 1";
-
-            // Get data rows
-            DataRow[] ReceiptRows = this.CoffeeHomeDataSet.Trade.Select(TimeQuery + " AND " + ReceiptQuery);
-            DataRow[] NoReceiptRows = this.CoffeeHomeDataSet.Trade.Select(TimeQuery + " AND " + NoReceiptQuery);
-            DataRow[] CredirCardtRows = this.CoffeeHomeDataSet.Trade.Select(TimeQuery + " AND " + CreditCardQuery);
-            DataRow[] DeliveryRows = this.CoffeeHomeDataSet.Trade.Select(TimeQuery + " AND " + DeliveryQuery);
-            DataRow[] CashRows = this.CoffeeHomeDataSet.Trade.Select(TimeQuery + " AND " + CashQuery);
-
-            // Count subtotals
-            int ReceiptSubtotal = this.CountSubtotal(ReceiptRows);
-            int NoReceiptSubtotal = this.CountSubtotal(NoReceiptRows);
-            int CreditCardSubtotal = this.CountSubtotal(CredirCardtRows);
-            int DeliverySubtotal = this.CountSubtotal(DeliveryRows);
-            int CashSubtotal = this.CountSubtotal(CashRows);
-
-            // Show subtotals on TextBoxes
-            this.AccountSalesReceiptTextBox.Text = ReceiptSubtotal.ToString();
-            this.AccountSalesNoReceiptTextBox.Text = NoReceiptSubtotal.ToString();
-            this.AccountSalesCreditCardTextBox.Text = CreditCardSubtotal.ToString();
-            this.AccountSalesDeliveryTextBox.Text = DeliverySubtotal.ToString();
-            this.AccountSalesCashTextBox.Text = CashSubtotal.ToString();
-
-            // Count achievement
-            int Achievement = ReceiptSubtotal + NoReceiptSubtotal;
-            this.AchievementTextBox.Text = Achievement.ToString();
-
-            int ReceiptWithMistake = ReceiptSubtotal + Mistake + Mistake2 + Mistake3;
-            this.ReceiptWithMistakeTextBox.Text = ReceiptWithMistake.ToString();
-
-            // Count and show Cash
-            int CashWithWorkingCapital = CashSubtotal + WorkingCapital;
-            this.CashWithWorkingCapitalTextBox.Text = CashWithWorkingCapital.ToString();
-        }
-
-        private int CountSubtotal(DataRow[] TradeRows)
-        {
-            int Subtotal = 0;
-            foreach (CoffeeHomeDataSet.TradeRow TradeRow in TradeRows)
-            {
-                Subtotal += TradeRow.Subtotal;
-            }
-            return Subtotal;
-        }
-
-        private int CountMistake(DataRow[] AccountRows)
-        {
-            int Mistake = 0;
-            foreach (CoffeeHomeDataSet.AccountRow AccountRow in AccountRows)
-            {
-                Mistake += AccountRow.Mistake + AccountRow.Mistake2 + AccountRow.Mistake3;
-            }
-            return Mistake;
-        }
-
-        private void ShowAccountDetails()
-        {
-            this.AccountDetailsDataGridView.Rows.Clear();
-            string TimeQuery = "Time >= #" + this.Day.ToShortDateString() + "# AND Time < #" + this.NextDay.ToShortDateString() + "#";
-            DataRow[] TradeRows = this.CoffeeHomeDataSet.Trade.Select(TimeQuery);
-            foreach (CoffeeHomeDataSet.TradeRow TradeRow in TradeRows)
-            {
-                int MemberID = TradeRow.MemberID;
-                CoffeeHomeDataSet.MemberRow MemberRow = this.CoffeeHomeDataSet.Member.FindByID(MemberID);
-                string MemberName = (MemberRow != null) ? MemberRow.Name : "";
-                string PaymentType = this.CoffeeHomeDataSet.PaymentType.FindByID(TradeRow.PaymentTypeID).Name;
-                string Receipt = (TradeRow.Receipt) ? "O" : "X";
-                this.AccountDetailsDataGridView.Rows.Add(
-                    TradeRow.ID,
-                    TradeRow.Time.ToShortTimeString(),
-                    MemberName,
-                    PaymentType,
-                    Receipt,
-                    "",
-                    "",
-                    "",
-                    "",
-                    TradeRow.Subtotal);
-
-                DataRow[] TradeItemRows = this.CoffeeHomeDataSet.TradeItem.Select("TradeID = " + TradeRow.ID.ToString());
-                foreach (CoffeeHomeDataSet.TradeItemRow TradeItemRow in TradeItemRows)
-                {
-                    int ItemID = TradeItemRow.ItemID;
-                    CoffeeHomeDataSet.ItemRow ItemRow = this.CoffeeHomeDataSet.Item.FindByID(ItemID);
-                    string RoastDegree = this.CoffeeHomeDataSet.RoastDegree.FindByID(TradeItemRow.RoastDegreeID).Name;
-                    this.AccountDetailsDataGridView.Rows.Add(
-                        TradeItemRow.TradeID,
-                        "",
-                        "",
-                        "",
-                        "",
-                        ItemRow.Name,
-                        RoastDegree,
-                        TradeItemRow.Amount,
-                        TradeItemRow.Amount * ItemRow.Price,
-                        "");
-                }
-            }
-        }
-
-        private void AccountDateTimePicker_ValueChanged(object sender, EventArgs e)
-        {
-            this.ShowDayAccount();
-        }
-
-        private void WorkingCapitalTextBox_TextChanged(object sender, EventArgs e)
-        {
-            int WorkingCapital = 0;
-            Int32.TryParse(this.WorkingCapitalTextBox.Text, out WorkingCapital);
-            this.AccountRow.WorkingCapital = WorkingCapital;
-        }
-
-        private void MistakeTextBox_TextChanged(object sender, EventArgs e)
-        {
-            int Mistake = 0;
-            Int32.TryParse(this.MistakeTextBox.Text, out Mistake);
-            this.AccountRow.Mistake = Mistake;
-            LoadDayAccount();
-        }
-
-        private void MistakeTextBox2_TextChanged(object sender, EventArgs e)
-        {
-            int Mistake2 = 0;
-            Int32.TryParse(this.MistakeTextBox2.Text, out Mistake2);
-            this.AccountRow.Mistake2 = Mistake2;
-            LoadDayAccount();
-        }
-
-        private void MistakeTextBox3_TextChanged(object sender, EventArgs e)
-        {
-            int Mistake3 = 0;
-            Int32.TryParse(this.MistakeTextBox3.Text, out Mistake3);
-            this.AccountRow.Mistake3 = Mistake3;
-            LoadDayAccount();
-        }
-
-        private void AccountDetailsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0) return;
-            int TradeID = (int)this.AccountDetailsDataGridView[0, e.RowIndex].Value;
-            TradeForm Form = TradeForm.EditTrade(TradeID);
-            if (Form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                // Find Trade Row
-                CoffeeHomeDataSet.TradeRow TradeRow = this.CoffeeHomeDataSet.Trade.FindByID(TradeID);
-                TradeRow.PaymentTypeID = Form.PaymentTypeID;
-                TradeRow.Receipt = Form.Receipt;
-                TradeRow.Subtotal = Form.Subtotal;
-                this.TradeBindingSource.EndEdit();
-                this.TradeTableAdapter.Update(this.CoffeeHomeDataSet.Trade);
-
-                DataRow[] TradeItemRows = this.CoffeeHomeDataSet.TradeItem.Select("TradeID = " + TradeID.ToString());
-                foreach (CoffeeHomeDataSet.TradeItemRow TradeItemRow in TradeItemRows)
-                {
-                    TradeItemRow.Delete();
-                }
-                foreach (TradeItem Item in Form.TradeItems)
-                {
-                    CoffeeHomeDataSet.TradeItemRow TradeItemRow = this.CoffeeHomeDataSet.TradeItem.NewTradeItemRow();
-                    TradeItemRow.TradeID = TradeID;
-                    TradeItemRow.ItemID = Item.ItemID;
-                    TradeItemRow.Amount = Item.Amount;
-                    TradeItemRow.RoastDegreeID = Item.RoastDegreeID;
-                    this.CoffeeHomeDataSet.TradeItem.AddTradeItemRow(TradeItemRow);
-                }
-                this.TradeItemBindingSource.EndEdit();
-                this.TradeItemTableAdapter.Update(this.CoffeeHomeDataSet.TradeItem);
-                this.ShowAccountDetails();
-            }
-        }
-
-        private void AccuontNewTradeButton_Click(object sender, EventArgs e)
-        {
-            TradeForm Form = TradeForm.NewTrade(0);
-            if (Form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                // Insert Trade
-                CoffeeHomeDataSet.TradeRow TradeRow = this.CoffeeHomeDataSet.Trade.NewTradeRow();
-                TradeRow.MemberID = 0;
-                TradeRow.Time = DateTime.Now;
-                TradeRow.PaymentTypeID = Form.PaymentTypeID;
-                TradeRow.Receipt = Form.Receipt;
-                TradeRow.Subtotal = Form.Subtotal;
-                this.CoffeeHomeDataSet.Trade.AddTradeRow(TradeRow);
-                this.TradeBindingSource.EndEdit();
-                this.TradeTableAdapter.Update(this.CoffeeHomeDataSet.Trade);
-
-                string PaymentType = this.CoffeeHomeDataSet.PaymentType.FindByID(TradeRow.PaymentTypeID).Name;
-                string Receipt = (TradeRow.Receipt) ? "O" : "X";
-                this.AccountDetailsDataGridView.Rows.Add(
-                    TradeRow.ID,
-                    TradeRow.Time.ToShortTimeString(),
-                    "",
-                    PaymentType,
-                    Receipt,
-                    "",
-                    "",
-                    "",
-                    "",
-                    TradeRow.Subtotal);
-
-                // Insert TradeItem
-                int TradeID = TradeRow.ID;
-                foreach (TradeItem Item in Form.TradeItems)
-                {
-                    CoffeeHomeDataSet.TradeItemRow TradeItemRow = this.CoffeeHomeDataSet.TradeItem.NewTradeItemRow();
-                    TradeItemRow.TradeID = TradeID;
-                    TradeItemRow.ItemID = Item.ItemID;
-                    TradeItemRow.Amount = Item.Amount;
-                    TradeItemRow.RoastDegreeID = Item.RoastDegreeID;
-                    this.CoffeeHomeDataSet.TradeItem.AddTradeItemRow(TradeItemRow);
-
-                    CoffeeHomeDataSet.ItemRow ItemRow = this.CoffeeHomeDataSet.Item.FindByID(TradeItemRow.ItemID);
-                    string RoastDegree = this.CoffeeHomeDataSet.RoastDegree.FindByID(TradeItemRow.RoastDegreeID).Name;
-                    this.AccountDetailsDataGridView.Rows.Add(
-                        TradeItemRow.TradeID,
-                        "",
-                        "",
-                        "",
-                        "",
-                        ItemRow.Name,
-                        RoastDegree,
-                        TradeItemRow.Amount,
-                        TradeItemRow.Amount * ItemRow.Price,
-                        "");
-                }
-                this.TradeItemBindingSource.EndEdit();
-                this.TradeItemTableAdapter.Update(this.CoffeeHomeDataSet.TradeItem);
-
-                this.LoadDayAccount();
-            }
+            this.AccountDayUserControl.SetForm();
+            this.AccountDayUserControl.ShowForm();
         }
 
         #endregion

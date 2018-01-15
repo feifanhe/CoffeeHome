@@ -127,6 +127,18 @@
     <Compile Include="MemberDataForm.Designer.cs">
       <DependentUpon>MemberDataForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MemberDetailsTabUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MemberDetailsTabUserControl.Designer.cs">
+      <DependentUpon>MemberDetailsTabUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemberDetailsUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MemberDetailsUserControl.Designer.cs">
+      <DependentUpon>MemberDetailsUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="MemberRemarksEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +205,12 @@
     <EmbeddedResource Include="MemberDataForm.resx">
       <DependentUpon>MemberDataForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MemberDetailsTabUserControl.resx">
+      <DependentUpon>MemberDetailsTabUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberDetailsUserControl.resx">
+      <DependentUpon>MemberDetailsUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MemberRemarksEditForm.resx">
       <DependentUpon>MemberRemarksEditForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -221,6 +239,9 @@
     <EmbeddedResource Include="SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="CoffeeHome.rtf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="CoffeeHomeDataSet.xsc">
       <DependentUpon>CoffeeHomeDataSet.xsd</DependentUpon>
     </None>

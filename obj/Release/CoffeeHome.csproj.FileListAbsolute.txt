@@ -60,7 +60,6 @@ C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\bin\Release\CoffeeHome.mdf
 C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\bin\Release\CoffeeHome_log.ldf
 C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\bin\Release\CoffeeHome.exe
 C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\bin\Release\CoffeeHome.pdb
-C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.csprojResolveAssemblyReference.cache
 C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.BigCheckBox.resources
 C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.ItemTypeEditForm.resources
 C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.ItemTypeSelectionForm.resources
@@ -78,3 +77,7 @@ C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.AccountYe
 C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.TestForm.resources
 C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.AccountMonthUserControl.resources
 C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.AccountDayUserControl.resources
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.MemberDetailsUserControl.resources
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.MemberDetailsTabUserControl.resources
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\bin\Release\CoffeeHome.rtf
+C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.csprojResolveAssemblyReference.cache

@@ -133,6 +133,24 @@ namespace CoffeeHome
             }
         }
 
+        private int CountTradeItem(DataRow[] TradeRows)
+        {
+            int Subtotal = 0;
+            foreach (CoffeeHomeDataSet.TradeRow TradeRow in TradeRows)
+            {
+                int TradeID = TradeRow.ID;
+                DataRow[] TradeItemRows = this.CoffeeHomeDataSet.TradeItem.Select("TradeID = " + TradeID.ToString());
+                foreach (CoffeeHomeDataSet.TradeItemRow TradeItemRow in TradeItemRows)
+                {
+                    int ItemID = TradeItemRow.ItemID;
+                    DataRow[] ItemRows = this.CoffeeHomeDataSet.Item.Select("ItemID = " + ItemID.ToString());
+                    
+                }
+            }
+            return Subtotal;
+        }
+
+
         private int CountSubtotal(DataRow[] TradeRows)
         {
             int Subtotal = 0;

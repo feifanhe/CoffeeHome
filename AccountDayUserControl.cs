@@ -24,18 +24,17 @@ namespace CoffeeHome
         public void SetDataSet(CoffeeHomeDataSet CoffeeHomeDataSet)
         {
             this.CoffeeHomeDataSet = CoffeeHomeDataSet;
+            this.AccountDateTimePicker.Value = DateTime.Today;
         }
 
-        public void LoadData()
+        public void SetForm()
         {
             this.AccountTableAdapter.Fill(this.CoffeeHomeDataSet.Account);
             this.TradeTableAdapter.Fill(this.CoffeeHomeDataSet.Trade);
             this.TradeItemTableAdapter.Fill(this.CoffeeHomeDataSet.TradeItem);
-            this.AccountDateTimePicker.Value = DateTime.Today;
-            this.ShowDayAccount();
         }
 
-        private void ShowDayAccount()
+        public void ShowForm()
         {
             DateTime Day = this.AccountDateTimePicker.Value;
             DateTime NextDay = Day.AddDays(1);
@@ -49,7 +48,6 @@ namespace CoffeeHome
                 this.AccountRow.Time = Day;
                 this.AccountRow.WorkingCapital = int.Parse(ConfigurationManager.AppSettings["WorkingCapital"]);
                 this.CoffeeHomeDataSet.Account.AddAccountRow(this.AccountRow);
-                //this.AccountBindingSource.EndEdit();
                 this.AccountTableAdapter.Update(this.CoffeeHomeDataSet.Account);
             }
             else
@@ -184,7 +182,7 @@ namespace CoffeeHome
 
         private void AccountDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            this.ShowDayAccount();
+            this.ShowForm();
         }
 
         private void WorkingCapitalTextBox_TextChanged(object sender, EventArgs e)
@@ -193,7 +191,7 @@ namespace CoffeeHome
             Int32.TryParse(this.WorkingCapitalTextBox.Text, out WorkingCapital);
             this.AccountRow.WorkingCapital = WorkingCapital;
             this.AccountTableAdapter.Update(this.CoffeeHomeDataSet.Account);
-            LoadDayAccount();
+            ShowStatistics();
         }
 
         private void MistakeTextBox_TextChanged(object sender, EventArgs e)
@@ -202,7 +200,7 @@ namespace CoffeeHome
             Int32.TryParse(this.MistakeTextBox.Text, out Mistake);
             this.AccountRow.Mistake = Mistake;
             this.AccountTableAdapter.Update(this.CoffeeHomeDataSet.Account);
-            LoadDayAccount();
+            ShowStatistics();
         }
 
         private void MistakeTextBox2_TextChanged(object sender, EventArgs e)
@@ -211,7 +209,7 @@ namespace CoffeeHome
             Int32.TryParse(this.MistakeTextBox2.Text, out Mistake2);
             this.AccountRow.Mistake2 = Mistake2;
             this.AccountTableAdapter.Update(this.CoffeeHomeDataSet.Account);
-            LoadDayAccount();
+            ShowStatistics();
         }
 
         private void MistakeTextBox3_TextChanged(object sender, EventArgs e)
@@ -220,7 +218,7 @@ namespace CoffeeHome
             Int32.TryParse(this.MistakeTextBox3.Text, out Mistake3);
             this.AccountRow.Mistake3 = Mistake3;
             this.AccountTableAdapter.Update(this.CoffeeHomeDataSet.Account);
-            LoadDayAccount();
+            ShowStatistics();
         }
 
         private void AccountDetailsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -312,7 +310,7 @@ namespace CoffeeHome
                 }
                 this.TradeItemTableAdapter.Update(this.CoffeeHomeDataSet.TradeItem);
 
-                this.LoadDayAccount();
+                this.ShowForm();
             }
         }
 
