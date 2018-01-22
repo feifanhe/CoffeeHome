@@ -28,10 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.AccountYearPanel = new System.Windows.Forms.Panel();
+            this.AccountYearChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.AccountYearStatisticsPanel = new System.Windows.Forms.Panel();
             this.AccountYearSalesPanel2 = new System.Windows.Forms.Panel();
             this.AccountYearAchievementPanel = new System.Windows.Forms.Panel();
@@ -58,8 +63,8 @@
             this.AccountYearReceiptButton = new System.Windows.Forms.Button();
             this.AccountYearSelectPanel = new System.Windows.Forms.Panel();
             this.AccountYearComboBox = new System.Windows.Forms.ComboBox();
-            this.AccountYearChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.AccountYearPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AccountYearChart)).BeginInit();
             this.AccountYearStatisticsPanel.SuspendLayout();
             this.AccountYearSalesPanel2.SuspendLayout();
             this.AccountYearAchievementPanel.SuspendLayout();
@@ -71,7 +76,6 @@
             this.AccountYearNoReceiptPanel.SuspendLayout();
             this.AccountYearReceiptPanel.SuspendLayout();
             this.AccountYearSelectPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AccountYearChart)).BeginInit();
             this.SuspendLayout();
             // 
             // AccountYearPanel
@@ -79,10 +83,110 @@
             this.AccountYearPanel.Controls.Add(this.AccountYearChart);
             this.AccountYearPanel.Controls.Add(this.AccountYearStatisticsPanel);
             this.AccountYearPanel.Controls.Add(this.AccountYearSelectPanel);
+            this.AccountYearPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AccountYearPanel.Location = new System.Drawing.Point(0, 0);
             this.AccountYearPanel.Name = "AccountYearPanel";
             this.AccountYearPanel.Size = new System.Drawing.Size(1024, 600);
             this.AccountYearPanel.TabIndex = 7;
+            // 
+            // AccountYearChart
+            // 
+            chartArea1.AxisX.Maximum = 12D;
+            chartArea1.AxisX.Minimum = 1D;
+            chartArea1.AxisY.IsLogarithmic = true;
+            chartArea1.Name = "AccountYearChartArea";
+            this.AccountYearChart.ChartAreas.Add(chartArea1);
+            this.AccountYearChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.BorderWidth = 3;
+            legend1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            legend1.IsTextAutoFit = false;
+            legend1.Name = "MonthAchievementLegend";
+            this.AccountYearChart.Legends.Add(legend1);
+            this.AccountYearChart.Location = new System.Drawing.Point(0, 150);
+            this.AccountYearChart.Name = "AccountYearChart";
+            series1.BorderWidth = 5;
+            series1.ChartArea = "AccountYearChartArea";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Color = System.Drawing.Color.Red;
+            series1.CustomProperties = "EmptyPointValue=Zero, LabelStyle=Top";
+            series1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series1.IsValueShownAsLabel = true;
+            series1.LabelBorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            series1.LabelForeColor = System.Drawing.Color.Red;
+            series1.Legend = "MonthAchievementLegend";
+            series1.LegendText = "月營業額";
+            series1.Name = "AchievementSeries";
+            series1.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
+            series1.SmartLabelStyle.CalloutLineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            series1.SmartLabelStyle.MovingDirection = ((System.Windows.Forms.DataVisualization.Charting.LabelAlignmentStyles)((System.Windows.Forms.DataVisualization.Charting.LabelAlignmentStyles.Top | System.Windows.Forms.DataVisualization.Charting.LabelAlignmentStyles.Bottom)));
+            series2.BorderWidth = 3;
+            series2.ChartArea = "AccountYearChartArea";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Color = System.Drawing.Color.ForestGreen;
+            series2.CustomProperties = "EmptyPointValue=Zero, LabelStyle=Bottom";
+            series2.Font = new System.Drawing.Font("微軟正黑體", 9.75F);
+            series2.IsValueShownAsLabel = true;
+            series2.LabelBorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            series2.LabelForeColor = System.Drawing.Color.ForestGreen;
+            series2.Legend = "MonthAchievementLegend";
+            series2.LegendText = "咖啡豆";
+            series2.Name = "BeansSubtotalSeries";
+            series2.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
+            series2.SmartLabelStyle.CalloutLineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            series2.SmartLabelStyle.MovingDirection = ((System.Windows.Forms.DataVisualization.Charting.LabelAlignmentStyles)((System.Windows.Forms.DataVisualization.Charting.LabelAlignmentStyles.Top | System.Windows.Forms.DataVisualization.Charting.LabelAlignmentStyles.Bottom)));
+            series3.BorderWidth = 3;
+            series3.ChartArea = "AccountYearChartArea";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Color = System.Drawing.Color.SkyBlue;
+            series3.CustomProperties = "EmptyPointValue=Zero";
+            series3.Font = new System.Drawing.Font("微軟正黑體", 9.75F);
+            series3.IsValueShownAsLabel = true;
+            series3.LabelBorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            series3.LabelForeColor = System.Drawing.Color.SkyBlue;
+            series3.Legend = "MonthAchievementLegend";
+            series3.LegendText = "器材";
+            series3.Name = "InstrumentSubtotalSeries";
+            series3.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
+            series3.SmartLabelStyle.CalloutLineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            series3.SmartLabelStyle.MovingDirection = ((System.Windows.Forms.DataVisualization.Charting.LabelAlignmentStyles)((System.Windows.Forms.DataVisualization.Charting.LabelAlignmentStyles.Top | System.Windows.Forms.DataVisualization.Charting.LabelAlignmentStyles.Bottom)));
+            series4.BorderWidth = 3;
+            series4.ChartArea = "AccountYearChartArea";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Color = System.Drawing.Color.Chocolate;
+            series4.CustomProperties = "EmptyPointValue=Zero";
+            series4.Font = new System.Drawing.Font("微軟正黑體", 9.75F);
+            series4.IsValueShownAsLabel = true;
+            series4.LabelBorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            series4.LabelForeColor = System.Drawing.Color.Chocolate;
+            series4.Legend = "MonthAchievementLegend";
+            series4.LegendText = "掛耳包";
+            series4.Name = "CoffeeBagSubtotalSeries";
+            series4.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
+            series4.SmartLabelStyle.CalloutLineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            series4.SmartLabelStyle.MovingDirection = ((System.Windows.Forms.DataVisualization.Charting.LabelAlignmentStyles)((System.Windows.Forms.DataVisualization.Charting.LabelAlignmentStyles.Top | System.Windows.Forms.DataVisualization.Charting.LabelAlignmentStyles.Bottom)));
+            series5.BorderWidth = 3;
+            series5.ChartArea = "AccountYearChartArea";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.Color = System.Drawing.Color.Violet;
+            series5.CustomProperties = "EmptyPointValue=Zero";
+            series5.Font = new System.Drawing.Font("微軟正黑體", 9.75F);
+            series5.IsValueShownAsLabel = true;
+            series5.LabelBorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            series5.LabelForeColor = System.Drawing.Color.Violet;
+            series5.Legend = "MonthAchievementLegend";
+            series5.LegendText = "咖啡";
+            series5.Name = "DrinkSubtotalSeries";
+            series5.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
+            series5.SmartLabelStyle.CalloutLineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            series5.SmartLabelStyle.MovingDirection = ((System.Windows.Forms.DataVisualization.Charting.LabelAlignmentStyles)((System.Windows.Forms.DataVisualization.Charting.LabelAlignmentStyles.Top | System.Windows.Forms.DataVisualization.Charting.LabelAlignmentStyles.Bottom)));
+            this.AccountYearChart.Series.Add(series1);
+            this.AccountYearChart.Series.Add(series2);
+            this.AccountYearChart.Series.Add(series3);
+            this.AccountYearChart.Series.Add(series4);
+            this.AccountYearChart.Series.Add(series5);
+            this.AccountYearChart.Size = new System.Drawing.Size(1024, 450);
+            this.AccountYearChart.TabIndex = 3;
+            this.AccountYearChart.Text = "年營業額";
             // 
             // AccountYearStatisticsPanel
             // 
@@ -372,29 +476,6 @@
             this.AccountYearComboBox.TabIndex = 0;
             this.AccountYearComboBox.SelectedIndexChanged += new System.EventHandler(this.AccountYearComboBox_SelectedIndexChanged);
             // 
-            // AccountYearChart
-            // 
-            chartArea2.AxisX.Maximum = 12D;
-            chartArea2.AxisX.Minimum = 1D;
-            chartArea2.Name = "AccountYearChartArea";
-            this.AccountYearChart.ChartAreas.Add(chartArea2);
-            this.AccountYearChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "MonthAchievementLegend";
-            this.AccountYearChart.Legends.Add(legend2);
-            this.AccountYearChart.Location = new System.Drawing.Point(0, 150);
-            this.AccountYearChart.Name = "AccountYearChart";
-            series2.ChartArea = "AccountYearChartArea";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series2.IsValueShownAsLabel = true;
-            series2.Legend = "MonthAchievementLegend";
-            series2.LegendText = "月營業額";
-            series2.Name = "AchieveSeries";
-            this.AccountYearChart.Series.Add(series2);
-            this.AccountYearChart.Size = new System.Drawing.Size(1024, 450);
-            this.AccountYearChart.TabIndex = 3;
-            this.AccountYearChart.Text = "年營業額";
-            // 
             // AccountYearUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -403,6 +484,7 @@
             this.Name = "AccountYearUserControl";
             this.Size = new System.Drawing.Size(1024, 600);
             this.AccountYearPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.AccountYearChart)).EndInit();
             this.AccountYearStatisticsPanel.ResumeLayout(false);
             this.AccountYearSalesPanel2.ResumeLayout(false);
             this.AccountYearAchievementPanel.ResumeLayout(false);
@@ -421,7 +503,6 @@
             this.AccountYearReceiptPanel.ResumeLayout(false);
             this.AccountYearReceiptPanel.PerformLayout();
             this.AccountYearSelectPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.AccountYearChart)).EndInit();
             this.ResumeLayout(false);
 
         }

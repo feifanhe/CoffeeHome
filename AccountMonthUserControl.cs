@@ -115,6 +115,87 @@ namespace CoffeeHome
             // Count achievement
             int Achievement = ReceiptSubtotal + NoReceiptSubtotal;
             this.AccountMonthAchievementTextBox.Text = Achievement.ToString();
+
+            ShowChart();
+        }
+
+        private void ShowChart()
+        {
+            if (this.AccountMonthYearComboBox.SelectedIndex == -1 || this.AccountMonthMonthComboBox.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            int RecentYear = DateTime.Today.Year;
+            int RecentMonth = DateTime.Today.Month;
+            int SelectedYear = RecentYear - this.AccountMonthYearComboBox.SelectedIndex;
+            int SelectedMonth = this.AccountMonthMonthComboBox.SelectedIndex + 1;
+            DateTime FirstDayOfMonth = new DateTime(SelectedYear, SelectedMonth, 1);
+            DateTime FirstDayOfNextMonth = FirstDayOfMonth.AddMonths(1);
+
+            string TimeQuery = "Time >= #" + FirstDayOfMonth.ToShortDateString() + "# AND Time < #" + FirstDayOfNextMonth.ToShortDateString() + "#";
+
+            this.AccountMonthChart.Series[0].Points.Clear();
+            DataRow[] TradeRows = this.CoffeeHomeDataSet.Trade.Select(TimeQuery);
+            this.RenderChart(TradeRows);
+        }
+
+
+        private int GetRootTypeID(int TypeID)
+        {
+            while (TypeID >= 10)
+            {
+                TypeID /= 10;
+            }
+            return TypeID;
+        }
+
+        private void RenderChart(DataRow[] TradeRows)
+        {
+            int BeansSubtotal = 0;
+            int InstrumentSubtotal = 0;
+            int CoffeeBagSubtotal = 0;
+            int DrinkSubtotal = 0;
+
+            foreach (CoffeeHomeDataSet.TradeRow TradeRow in TradeRows)
+            {
+                int TradeID = TradeRow.ID;
+                DataRow[] TradeItemRows = this.CoffeeHomeDataSet.TradeItem.Select("TradeID = " + TradeID.ToString());
+                foreach (CoffeeHomeDataSet.TradeItemRow TradeItemRow in TradeItemRows)
+                {
+                    int ItemID = TradeItemRow.ItemID;
+                    DataRow[] ItemRows = this.CoffeeHomeDataSet.Item.Select("ID = " + ItemID.ToString());
+                    foreach (CoffeeHomeDataSet.ItemRow ItemRow in ItemRows)
+                    {
+                        switch (GetRootTypeID(ItemRow.TypeID))
+                        {
+                            case 1:
+                                BeansSubtotal += ItemRow.Price * TradeItemRow.Amount;
+                                break;
+                            case 2:
+                                InstrumentSubtotal += ItemRow.Price * TradeItemRow.Amount;
+                                break;
+                            case 3:
+                                CoffeeBagSubtotal += ItemRow.Price * TradeItemRow.Amount;
+                                break;
+                            case 4:
+                                DrinkSubtotal += ItemRow.Price * TradeItemRow.Amount;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
+
+            if (BeansSubtotal > 0)
+                this.AccountMonthChart.Series[0].Points.AddXY("咖啡豆", BeansSubtotal);
+            if (InstrumentSubtotal > 0)
+                this.AccountMonthChart.Series[0].Points.AddXY("器材", InstrumentSubtotal);
+            if (CoffeeBagSubtotal > 0)
+                this.AccountMonthChart.Series[0].Points.AddXY("掛耳包", CoffeeBagSubtotal);
+            if (DrinkSubtotal > 0)
+                this.AccountMonthChart.Series[0].Points.AddXY("咖啡", DrinkSubtotal);
         }
 
         private int CountSubtotal(DataRow[] TradeRows)

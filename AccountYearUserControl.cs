@@ -103,53 +103,88 @@ namespace CoffeeHome
             {
                 return;
             }
+
             int RecentYear = DateTime.Today.Year;
             int SelectedYear = RecentYear - this.AccountYearComboBox.SelectedIndex;
             DateTime FirstDayOfMonth = new DateTime(SelectedYear, 1, 1);
             DateTime FirstDayOfNextMonth = FirstDayOfMonth.AddMonths(1);
 
-            string ReceiptQuery = "Receipt = 1";
-            string NoReceiptQuery = "Receipt = 0";
-
-            this.AccountYearChart.Series[0].Points.Clear();
+            foreach (var Series in this.AccountYearChart.Series)
+            {
+                Series.Points.Clear();
+            }
 
             for (int i = 0; i < 12; i++)
             {
                 string TimeQuery = "Time >= #" + FirstDayOfMonth.ToShortDateString() + "# AND Time < #" + FirstDayOfNextMonth.ToShortDateString() + "#";
-                DataRow[] ReceiptRows = this.CoffeeHomeDataSet.Trade.Select(TimeQuery + " AND " + ReceiptQuery);
-                DataRow[] NoReceiptRows = this.CoffeeHomeDataSet.Trade.Select(TimeQuery + " AND " + NoReceiptQuery);
-
-                int ReceiptSubtotal = this.CountSubtotal(ReceiptRows);
-                int NoReceiptSubtotal = this.CountSubtotal(NoReceiptRows);
-                int Achievement = ReceiptSubtotal + NoReceiptSubtotal;
-
-                if (Achievement > 0)
-                {
-                    this.AccountYearChart.Series[0].Points.AddXY(i + 1, Achievement);
-                }
-
+                DataRow[] TradeRows = this.CoffeeHomeDataSet.Trade.Select(TimeQuery);
+                this.RenderChart(i + 1, TradeRows);
                 FirstDayOfMonth = FirstDayOfMonth.AddMonths(1);
                 FirstDayOfNextMonth = FirstDayOfNextMonth.AddMonths(1);
             }
+
         }
 
-        private int CountTradeItem(DataRow[] TradeRows)
+        private int GetRootTypeID(int TypeID)
         {
-            int Subtotal = 0;
+            while (TypeID >= 10)
+            {
+                TypeID /= 10;
+            }
+            return TypeID;
+        }
+
+        private void RenderChart(int Month, DataRow[] TradeRows)
+        {
+            int AchievementSubtotal = 0;
+            int BeansSubtotal = 0;
+            int InstrumentSubtotal = 0;
+            int CoffeeBagSubtotal = 0;
+            int DrinkSubtotal = 0;
+
             foreach (CoffeeHomeDataSet.TradeRow TradeRow in TradeRows)
             {
+                AchievementSubtotal += TradeRow.Subtotal;
                 int TradeID = TradeRow.ID;
                 DataRow[] TradeItemRows = this.CoffeeHomeDataSet.TradeItem.Select("TradeID = " + TradeID.ToString());
                 foreach (CoffeeHomeDataSet.TradeItemRow TradeItemRow in TradeItemRows)
                 {
                     int ItemID = TradeItemRow.ItemID;
-                    DataRow[] ItemRows = this.CoffeeHomeDataSet.Item.Select("ItemID = " + ItemID.ToString());
-                    
+                    DataRow[] ItemRows = this.CoffeeHomeDataSet.Item.Select("ID = " + ItemID.ToString());
+                    foreach (CoffeeHomeDataSet.ItemRow ItemRow in ItemRows)
+                    {
+                        switch (GetRootTypeID(ItemRow.TypeID))
+                        {
+                            case 1:
+                                BeansSubtotal += ItemRow.Price * TradeItemRow.Amount;
+                                break;
+                            case 2:
+                                InstrumentSubtotal += ItemRow.Price * TradeItemRow.Amount;
+                                break;
+                            case 3:
+                                CoffeeBagSubtotal += ItemRow.Price * TradeItemRow.Amount;
+                                break;
+                            case 4:
+                                DrinkSubtotal += ItemRow.Price * TradeItemRow.Amount;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                 }
             }
-            return Subtotal;
-        }
 
+            if (AchievementSubtotal > 0)
+                this.AccountYearChart.Series[0].Points.AddXY(Month, AchievementSubtotal);
+            if (BeansSubtotal > 0)
+                this.AccountYearChart.Series[1].Points.AddXY(Month, BeansSubtotal);
+            if (InstrumentSubtotal > 0)
+                this.AccountYearChart.Series[2].Points.AddXY(Month, InstrumentSubtotal);
+            if (CoffeeBagSubtotal > 0)
+                this.AccountYearChart.Series[3].Points.AddXY(Month, CoffeeBagSubtotal);
+            if (DrinkSubtotal > 0)
+                this.AccountYearChart.Series[4].Points.AddXY(Month, DrinkSubtotal);
+        }
 
         private int CountSubtotal(DataRow[] TradeRows)
         {
