@@ -33,17 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.AccountPanel = new System.Windows.Forms.Panel();
             this.AccountDetailsDataGridView = new System.Windows.Forms.DataGridView();
-            this.AccountDetailsTradeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AccountDetailsTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AccountDetailsMemberName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AccountDetailsPaymentType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AccountDetailsReceipt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AccountDetailsItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AccountDetailsRoastDegree = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AccountDetailsItemAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AccountDetailsItemSubtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AccountDetailsSubtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AccountDetailsCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.AccountStatisticsPanel = new System.Windows.Forms.Panel();
             this.AccountSalesPanel3 = new System.Windows.Forms.Panel();
             this.ReceiptWithMistakePanel = new System.Windows.Forms.Panel();
@@ -90,6 +79,17 @@
             this.AccountTableAdapter = new CoffeeHome.CoffeeHomeDataSetTableAdapters.AccountTableAdapter();
             this.TradeTableAdapter = new CoffeeHome.CoffeeHomeDataSetTableAdapters.TradeTableAdapter();
             this.TradeItemTableAdapter = new CoffeeHome.CoffeeHomeDataSetTableAdapters.TradeItemTableAdapter();
+            this.AccountDetailsTradeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AccountDetailsTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AccountDetailsMemberName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AccountDetailsPaymentType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AccountDetailsReceipt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AccountDetailsItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AccountDetailsRoastDegree = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AccountDetailsItemAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AccountDetailsItemSubtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AccountDetailsSubtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AccountDetailsCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.AccountPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AccountDetailsDataGridView)).BeginInit();
             this.AccountStatisticsPanel.SuspendLayout();
@@ -176,78 +176,6 @@
             this.AccountDetailsDataGridView.Size = new System.Drawing.Size(1024, 400);
             this.AccountDetailsDataGridView.TabIndex = 2;
             this.AccountDetailsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AccountDetailsDataGridView_CellDoubleClick);
-            // 
-            // AccountDetailsTradeID
-            // 
-            this.AccountDetailsTradeID.HeaderText = "ID";
-            this.AccountDetailsTradeID.Name = "AccountDetailsTradeID";
-            // 
-            // AccountDetailsTime
-            // 
-            this.AccountDetailsTime.HeaderText = "時間";
-            this.AccountDetailsTime.Name = "AccountDetailsTime";
-            this.AccountDetailsTime.ReadOnly = true;
-            // 
-            // AccountDetailsMemberName
-            // 
-            this.AccountDetailsMemberName.HeaderText = "會員";
-            this.AccountDetailsMemberName.Name = "AccountDetailsMemberName";
-            this.AccountDetailsMemberName.ReadOnly = true;
-            // 
-            // AccountDetailsPaymentType
-            // 
-            this.AccountDetailsPaymentType.HeaderText = "付款方式";
-            this.AccountDetailsPaymentType.Name = "AccountDetailsPaymentType";
-            this.AccountDetailsPaymentType.ReadOnly = true;
-            this.AccountDetailsPaymentType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // AccountDetailsReceipt
-            // 
-            this.AccountDetailsReceipt.FillWeight = 50F;
-            this.AccountDetailsReceipt.HeaderText = "發票";
-            this.AccountDetailsReceipt.Name = "AccountDetailsReceipt";
-            this.AccountDetailsReceipt.ReadOnly = true;
-            this.AccountDetailsReceipt.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // AccountDetailsItemName
-            // 
-            this.AccountDetailsItemName.HeaderText = "商品";
-            this.AccountDetailsItemName.Name = "AccountDetailsItemName";
-            this.AccountDetailsItemName.ReadOnly = true;
-            // 
-            // AccountDetailsRoastDegree
-            // 
-            this.AccountDetailsRoastDegree.FillWeight = 50F;
-            this.AccountDetailsRoastDegree.HeaderText = "烘焙";
-            this.AccountDetailsRoastDegree.Name = "AccountDetailsRoastDegree";
-            this.AccountDetailsRoastDegree.ReadOnly = true;
-            // 
-            // AccountDetailsItemAmount
-            // 
-            this.AccountDetailsItemAmount.FillWeight = 50F;
-            this.AccountDetailsItemAmount.HeaderText = "數量";
-            this.AccountDetailsItemAmount.Name = "AccountDetailsItemAmount";
-            this.AccountDetailsItemAmount.ReadOnly = true;
-            // 
-            // AccountDetailsItemSubtotal
-            // 
-            this.AccountDetailsItemSubtotal.HeaderText = "小計";
-            this.AccountDetailsItemSubtotal.Name = "AccountDetailsItemSubtotal";
-            this.AccountDetailsItemSubtotal.ReadOnly = true;
-            // 
-            // AccountDetailsSubtotal
-            // 
-            this.AccountDetailsSubtotal.HeaderText = "總額";
-            this.AccountDetailsSubtotal.Name = "AccountDetailsSubtotal";
-            this.AccountDetailsSubtotal.ReadOnly = true;
-            // 
-            // AccountDetailsCheck
-            // 
-            this.AccountDetailsCheck.FillWeight = 50F;
-            this.AccountDetailsCheck.HeaderText = "對帳";
-            this.AccountDetailsCheck.Name = "AccountDetailsCheck";
-            this.AccountDetailsCheck.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.AccountDetailsCheck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // AccountStatisticsPanel
             // 
@@ -740,6 +668,79 @@
             // 
             this.TradeItemTableAdapter.ClearBeforeFill = true;
             // 
+            // AccountDetailsTradeID
+            // 
+            this.AccountDetailsTradeID.HeaderText = "ID";
+            this.AccountDetailsTradeID.Name = "AccountDetailsTradeID";
+            this.AccountDetailsTradeID.Visible = false;
+            // 
+            // AccountDetailsTime
+            // 
+            this.AccountDetailsTime.HeaderText = "時間";
+            this.AccountDetailsTime.Name = "AccountDetailsTime";
+            this.AccountDetailsTime.ReadOnly = true;
+            // 
+            // AccountDetailsMemberName
+            // 
+            this.AccountDetailsMemberName.HeaderText = "會員";
+            this.AccountDetailsMemberName.Name = "AccountDetailsMemberName";
+            this.AccountDetailsMemberName.ReadOnly = true;
+            // 
+            // AccountDetailsPaymentType
+            // 
+            this.AccountDetailsPaymentType.HeaderText = "付款方式";
+            this.AccountDetailsPaymentType.Name = "AccountDetailsPaymentType";
+            this.AccountDetailsPaymentType.ReadOnly = true;
+            this.AccountDetailsPaymentType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // AccountDetailsReceipt
+            // 
+            this.AccountDetailsReceipt.FillWeight = 50F;
+            this.AccountDetailsReceipt.HeaderText = "發票";
+            this.AccountDetailsReceipt.Name = "AccountDetailsReceipt";
+            this.AccountDetailsReceipt.ReadOnly = true;
+            this.AccountDetailsReceipt.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // AccountDetailsItemName
+            // 
+            this.AccountDetailsItemName.HeaderText = "商品";
+            this.AccountDetailsItemName.Name = "AccountDetailsItemName";
+            this.AccountDetailsItemName.ReadOnly = true;
+            // 
+            // AccountDetailsRoastDegree
+            // 
+            this.AccountDetailsRoastDegree.FillWeight = 50F;
+            this.AccountDetailsRoastDegree.HeaderText = "烘焙";
+            this.AccountDetailsRoastDegree.Name = "AccountDetailsRoastDegree";
+            this.AccountDetailsRoastDegree.ReadOnly = true;
+            // 
+            // AccountDetailsItemAmount
+            // 
+            this.AccountDetailsItemAmount.FillWeight = 50F;
+            this.AccountDetailsItemAmount.HeaderText = "數量";
+            this.AccountDetailsItemAmount.Name = "AccountDetailsItemAmount";
+            this.AccountDetailsItemAmount.ReadOnly = true;
+            // 
+            // AccountDetailsItemSubtotal
+            // 
+            this.AccountDetailsItemSubtotal.HeaderText = "小計";
+            this.AccountDetailsItemSubtotal.Name = "AccountDetailsItemSubtotal";
+            this.AccountDetailsItemSubtotal.ReadOnly = true;
+            // 
+            // AccountDetailsSubtotal
+            // 
+            this.AccountDetailsSubtotal.HeaderText = "總額";
+            this.AccountDetailsSubtotal.Name = "AccountDetailsSubtotal";
+            this.AccountDetailsSubtotal.ReadOnly = true;
+            // 
+            // AccountDetailsCheck
+            // 
+            this.AccountDetailsCheck.FillWeight = 50F;
+            this.AccountDetailsCheck.HeaderText = "對帳";
+            this.AccountDetailsCheck.Name = "AccountDetailsCheck";
+            this.AccountDetailsCheck.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.AccountDetailsCheck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // AccountDayUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -786,17 +787,6 @@
 
         private System.Windows.Forms.Panel AccountPanel;
         private System.Windows.Forms.DataGridView AccountDetailsDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AccountDetailsTradeID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AccountDetailsTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AccountDetailsMemberName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AccountDetailsPaymentType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AccountDetailsReceipt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AccountDetailsItemName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AccountDetailsRoastDegree;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AccountDetailsItemAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AccountDetailsItemSubtotal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AccountDetailsSubtotal;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn AccountDetailsCheck;
         private System.Windows.Forms.Panel AccountStatisticsPanel;
         private System.Windows.Forms.Panel AccountSalesPanel3;
         private System.Windows.Forms.Panel ReceiptWithMistakePanel;
@@ -843,5 +833,16 @@
         private CoffeeHomeDataSetTableAdapters.AccountTableAdapter AccountTableAdapter;
         private CoffeeHomeDataSetTableAdapters.TradeTableAdapter TradeTableAdapter;
         private CoffeeHomeDataSetTableAdapters.TradeItemTableAdapter TradeItemTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AccountDetailsTradeID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AccountDetailsTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AccountDetailsMemberName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AccountDetailsPaymentType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AccountDetailsReceipt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AccountDetailsItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AccountDetailsRoastDegree;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AccountDetailsItemAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AccountDetailsItemSubtotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AccountDetailsSubtotal;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn AccountDetailsCheck;
     }
 }

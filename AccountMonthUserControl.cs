@@ -135,7 +135,6 @@ namespace CoffeeHome
 
             string TimeQuery = "Time >= #" + FirstDayOfMonth.ToShortDateString() + "# AND Time < #" + FirstDayOfNextMonth.ToShortDateString() + "#";
 
-            this.AccountMonthChart.Series[0].Points.Clear();
             DataRow[] TradeRows = this.CoffeeHomeDataSet.Trade.Select(TimeQuery);
             this.RenderChart(TradeRows);
         }
@@ -152,6 +151,12 @@ namespace CoffeeHome
 
         private void RenderChart(DataRow[] TradeRows)
         {
+            this.AccountMonthChart.Series[0].Points.Clear();
+            //this.AccountMonthChart.Series[1].Points.Clear();
+            //this.AccountMonthChart.Series[2].Points.Clear();
+            //this.AccountMonthChart.Series[3].Points.Clear();
+            //this.AccountMonthChart.Series[4].Points.Clear();
+
             int BeansSubtotal = 0;
             int InstrumentSubtotal = 0;
             int CoffeeBagSubtotal = 0;
@@ -160,6 +165,8 @@ namespace CoffeeHome
             foreach (CoffeeHomeDataSet.TradeRow TradeRow in TradeRows)
             {
                 int TradeID = TradeRow.ID;
+                DateTime Time = TradeRow.Time;
+                
                 DataRow[] TradeItemRows = this.CoffeeHomeDataSet.TradeItem.Select("TradeID = " + TradeID.ToString());
                 foreach (CoffeeHomeDataSet.TradeItemRow TradeItemRow in TradeItemRows)
                 {

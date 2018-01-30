@@ -70,6 +70,11 @@
             this.MemberDetailsPanel = new System.Windows.Forms.Panel();
             this.MemberListPanel = new System.Windows.Forms.Panel();
             this.MemberListDataGridView = new System.Windows.Forms.DataGridView();
+            this.ItemPanel = new System.Windows.Forms.Panel();
+            this.ItemDataGridView = new System.Windows.Forms.DataGridView();
+            this.IdleTimer = new System.Windows.Forms.Timer(this.components);
+            this.ItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.CoffeeHomeDataSet = new CoffeeHome.CoffeeHomeDataSet();
             this.MemberIDDataGridViewTextBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MemberNameDataGridViewTextBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MemberSexDataGridViewTextBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,17 +83,7 @@
             this.MamberAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MemberEmailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MemberBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.CoffeeHomeDataSet = new CoffeeHome.CoffeeHomeDataSet();
             this.SexBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ItemPanel = new System.Windows.Forms.Panel();
-            this.ItemDataGridView = new System.Windows.Forms.DataGridView();
-            this.ItemIDDataGridViewTextBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemNameDataGridViewTextBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemTypeIDDataGridViewTextBox = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ItemPriceDataGridViewTextBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemRemarksDataGridViewTextBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemShelfDataGridViewTextBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ItemShelfBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.PaymentTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.TradeBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -107,10 +102,15 @@
             this.AccountTableAdapter = new CoffeeHome.CoffeeHomeDataSetTableAdapters.AccountTableAdapter();
             this.RoastDegreeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.RoastDegreeTableAdapter = new CoffeeHome.CoffeeHomeDataSetTableAdapters.RoastDegreeTableAdapter();
-            this.IdleTimer = new System.Windows.Forms.Timer(this.components);
             this.AccountDayUserControl = new CoffeeHome.AccountDayUserControl();
             this.AccountMonthUserControl = new CoffeeHome.AccountMonthUserControl();
             this.AccountYearUserControl = new CoffeeHome.AccountYearUserControl();
+            this.ItemIDDataGridViewTextBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemNameDataGridViewTextBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemTypeIDDataGridViewTextBox = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ItemPriceDataGridViewTextBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemShelfDataGridViewTextBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemRemarksDataGridViewTextBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SidePanel.SuspendLayout();
             this.LogoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoPicture)).BeginInit();
@@ -122,12 +122,12 @@
             this.HomePanel.SuspendLayout();
             this.MemberListPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MemberListDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MemberBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CoffeeHomeDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SexBindingSource)).BeginInit();
             this.ItemPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CoffeeHomeDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MemberBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SexBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemShelfBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PaymentTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TradeBindingSource)).BeginInit();
@@ -663,6 +663,84 @@
             this.MemberListDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MemberListDataGridView_CellDoubleClick);
             this.MemberListDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.MemberListDataGridView_CellFormatting);
             // 
+            // ItemPanel
+            // 
+            this.ItemPanel.Controls.Add(this.ItemDataGridView);
+            this.ItemPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ItemPanel.Location = new System.Drawing.Point(240, 80);
+            this.ItemPanel.Name = "ItemPanel";
+            this.ItemPanel.Size = new System.Drawing.Size(1024, 601);
+            this.ItemPanel.TabIndex = 3;
+            this.ItemPanel.Visible = false;
+            // 
+            // ItemDataGridView
+            // 
+            this.ItemDataGridView.AllowUserToAddRows = false;
+            this.ItemDataGridView.AllowUserToDeleteRows = false;
+            this.ItemDataGridView.AutoGenerateColumns = false;
+            this.ItemDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.ItemDataGridView.BackgroundColor = System.Drawing.Color.White;
+            this.ItemDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ItemDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.ItemDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ItemDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ItemIDDataGridViewTextBox,
+            this.ItemNameDataGridViewTextBox,
+            this.ItemTypeIDDataGridViewTextBox,
+            this.ItemPriceDataGridViewTextBox,
+            this.ItemShelfDataGridViewTextBox,
+            this.ItemRemarksDataGridViewTextBox});
+            this.ItemDataGridView.DataSource = this.ItemBindingSource;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ItemDataGridView.DefaultCellStyle = dataGridViewCellStyle4;
+            this.ItemDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ItemDataGridView.GridColor = System.Drawing.Color.Silver;
+            this.ItemDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.ItemDataGridView.Name = "ItemDataGridView";
+            this.ItemDataGridView.ReadOnly = true;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ItemDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.ItemDataGridView.RowHeadersVisible = false;
+            this.ItemDataGridView.RowTemplate.Height = 48;
+            this.ItemDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ItemDataGridView.Size = new System.Drawing.Size(1024, 601);
+            this.ItemDataGridView.TabIndex = 0;
+            this.ItemDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ItemDataGridView_CellDoubleClick);
+            this.ItemDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.ItemDataGridView_CellFormatting);
+            // 
+            // IdleTimer
+            // 
+            this.IdleTimer.Tick += new System.EventHandler(this.IdleTimer_Tick);
+            // 
+            // ItemBindingSource
+            // 
+            this.ItemBindingSource.DataMember = "Item";
+            this.ItemBindingSource.DataSource = this.CoffeeHomeDataSet;
+            // 
+            // CoffeeHomeDataSet
+            // 
+            this.CoffeeHomeDataSet.DataSetName = "CoffeeHomeDataSet";
+            this.CoffeeHomeDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // MemberIDDataGridViewTextBox
             // 
             this.MemberIDDataGridViewTextBox.DataPropertyName = "ID";
@@ -721,134 +799,10 @@
             this.MemberBindingSource.DataMember = "Member";
             this.MemberBindingSource.DataSource = this.CoffeeHomeDataSet;
             // 
-            // CoffeeHomeDataSet
-            // 
-            this.CoffeeHomeDataSet.DataSetName = "CoffeeHomeDataSet";
-            this.CoffeeHomeDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // SexBindingSource
             // 
             this.SexBindingSource.DataMember = "Sex";
             this.SexBindingSource.DataSource = this.CoffeeHomeDataSet;
-            // 
-            // ItemPanel
-            // 
-            this.ItemPanel.Controls.Add(this.ItemDataGridView);
-            this.ItemPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ItemPanel.Location = new System.Drawing.Point(240, 80);
-            this.ItemPanel.Name = "ItemPanel";
-            this.ItemPanel.Size = new System.Drawing.Size(1024, 601);
-            this.ItemPanel.TabIndex = 3;
-            this.ItemPanel.Visible = false;
-            // 
-            // ItemDataGridView
-            // 
-            this.ItemDataGridView.AllowUserToAddRows = false;
-            this.ItemDataGridView.AllowUserToDeleteRows = false;
-            this.ItemDataGridView.AutoGenerateColumns = false;
-            this.ItemDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.ItemDataGridView.BackgroundColor = System.Drawing.Color.White;
-            this.ItemDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ItemDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.ItemDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ItemDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ItemIDDataGridViewTextBox,
-            this.ItemNameDataGridViewTextBox,
-            this.ItemTypeIDDataGridViewTextBox,
-            this.ItemPriceDataGridViewTextBox,
-            this.ItemRemarksDataGridViewTextBox,
-            this.ItemShelfDataGridViewTextBox});
-            this.ItemDataGridView.DataSource = this.ItemBindingSource;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ItemDataGridView.DefaultCellStyle = dataGridViewCellStyle4;
-            this.ItemDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ItemDataGridView.GridColor = System.Drawing.Color.Silver;
-            this.ItemDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.ItemDataGridView.Name = "ItemDataGridView";
-            this.ItemDataGridView.ReadOnly = true;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ItemDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.ItemDataGridView.RowHeadersVisible = false;
-            this.ItemDataGridView.RowTemplate.Height = 48;
-            this.ItemDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ItemDataGridView.Size = new System.Drawing.Size(1024, 601);
-            this.ItemDataGridView.TabIndex = 0;
-            this.ItemDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ItemDataGridView_CellDoubleClick);
-            this.ItemDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.ItemDataGridView_CellFormatting);
-            // 
-            // ItemIDDataGridViewTextBox
-            // 
-            this.ItemIDDataGridViewTextBox.DataPropertyName = "ID";
-            this.ItemIDDataGridViewTextBox.FillWeight = 5F;
-            this.ItemIDDataGridViewTextBox.HeaderText = "ID";
-            this.ItemIDDataGridViewTextBox.Name = "ItemIDDataGridViewTextBox";
-            this.ItemIDDataGridViewTextBox.ReadOnly = true;
-            // 
-            // ItemNameDataGridViewTextBox
-            // 
-            this.ItemNameDataGridViewTextBox.DataPropertyName = "Name";
-            this.ItemNameDataGridViewTextBox.FillWeight = 20F;
-            this.ItemNameDataGridViewTextBox.HeaderText = "名稱";
-            this.ItemNameDataGridViewTextBox.Name = "ItemNameDataGridViewTextBox";
-            this.ItemNameDataGridViewTextBox.ReadOnly = true;
-            // 
-            // ItemTypeIDDataGridViewTextBox
-            // 
-            this.ItemTypeIDDataGridViewTextBox.DataPropertyName = "TypeID";
-            this.ItemTypeIDDataGridViewTextBox.FillWeight = 30F;
-            this.ItemTypeIDDataGridViewTextBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ItemTypeIDDataGridViewTextBox.HeaderText = "分類";
-            this.ItemTypeIDDataGridViewTextBox.Name = "ItemTypeIDDataGridViewTextBox";
-            this.ItemTypeIDDataGridViewTextBox.ReadOnly = true;
-            this.ItemTypeIDDataGridViewTextBox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ItemTypeIDDataGridViewTextBox.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // ItemPriceDataGridViewTextBox
-            // 
-            this.ItemPriceDataGridViewTextBox.DataPropertyName = "Price";
-            this.ItemPriceDataGridViewTextBox.FillWeight = 10F;
-            this.ItemPriceDataGridViewTextBox.HeaderText = "單價";
-            this.ItemPriceDataGridViewTextBox.Name = "ItemPriceDataGridViewTextBox";
-            this.ItemPriceDataGridViewTextBox.ReadOnly = true;
-            // 
-            // ItemRemarksDataGridViewTextBox
-            // 
-            this.ItemRemarksDataGridViewTextBox.DataPropertyName = "Remarks";
-            this.ItemRemarksDataGridViewTextBox.FillWeight = 30F;
-            this.ItemRemarksDataGridViewTextBox.HeaderText = "備註";
-            this.ItemRemarksDataGridViewTextBox.Name = "ItemRemarksDataGridViewTextBox";
-            this.ItemRemarksDataGridViewTextBox.ReadOnly = true;
-            // 
-            // ItemShelfDataGridViewTextBox
-            // 
-            this.ItemShelfDataGridViewTextBox.FillWeight = 10F;
-            this.ItemShelfDataGridViewTextBox.HeaderText = "狀態";
-            this.ItemShelfDataGridViewTextBox.Name = "ItemShelfDataGridViewTextBox";
-            this.ItemShelfDataGridViewTextBox.ReadOnly = true;
-            // 
-            // ItemBindingSource
-            // 
-            this.ItemBindingSource.DataMember = "Item";
-            this.ItemBindingSource.DataSource = this.CoffeeHomeDataSet;
             // 
             // ItemShelfBindingSource
             // 
@@ -940,10 +894,6 @@
             // 
             this.RoastDegreeTableAdapter.ClearBeforeFill = true;
             // 
-            // IdleTimer
-            // 
-            this.IdleTimer.Tick += new System.EventHandler(this.IdleTimer_Tick);
-            // 
             // AccountDayUserControl
             // 
             this.AccountDayUserControl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -971,17 +921,68 @@
             this.AccountYearUserControl.TabIndex = 9;
             this.AccountYearUserControl.Visible = false;
             // 
+            // ItemIDDataGridViewTextBox
+            // 
+            this.ItemIDDataGridViewTextBox.DataPropertyName = "ID";
+            this.ItemIDDataGridViewTextBox.FillWeight = 5F;
+            this.ItemIDDataGridViewTextBox.HeaderText = "ID";
+            this.ItemIDDataGridViewTextBox.Name = "ItemIDDataGridViewTextBox";
+            this.ItemIDDataGridViewTextBox.ReadOnly = true;
+            // 
+            // ItemNameDataGridViewTextBox
+            // 
+            this.ItemNameDataGridViewTextBox.DataPropertyName = "Name";
+            this.ItemNameDataGridViewTextBox.FillWeight = 20F;
+            this.ItemNameDataGridViewTextBox.HeaderText = "名稱";
+            this.ItemNameDataGridViewTextBox.Name = "ItemNameDataGridViewTextBox";
+            this.ItemNameDataGridViewTextBox.ReadOnly = true;
+            // 
+            // ItemTypeIDDataGridViewTextBox
+            // 
+            this.ItemTypeIDDataGridViewTextBox.DataPropertyName = "TypeID";
+            this.ItemTypeIDDataGridViewTextBox.FillWeight = 30F;
+            this.ItemTypeIDDataGridViewTextBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ItemTypeIDDataGridViewTextBox.HeaderText = "分類";
+            this.ItemTypeIDDataGridViewTextBox.Name = "ItemTypeIDDataGridViewTextBox";
+            this.ItemTypeIDDataGridViewTextBox.ReadOnly = true;
+            this.ItemTypeIDDataGridViewTextBox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ItemTypeIDDataGridViewTextBox.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // ItemPriceDataGridViewTextBox
+            // 
+            this.ItemPriceDataGridViewTextBox.DataPropertyName = "Price";
+            this.ItemPriceDataGridViewTextBox.FillWeight = 10F;
+            this.ItemPriceDataGridViewTextBox.HeaderText = "單價";
+            this.ItemPriceDataGridViewTextBox.Name = "ItemPriceDataGridViewTextBox";
+            this.ItemPriceDataGridViewTextBox.ReadOnly = true;
+            // 
+            // ItemShelfDataGridViewTextBox
+            // 
+            this.ItemShelfDataGridViewTextBox.DataPropertyName = "OnShelf";
+            this.ItemShelfDataGridViewTextBox.FillWeight = 10F;
+            this.ItemShelfDataGridViewTextBox.HeaderText = "狀態";
+            this.ItemShelfDataGridViewTextBox.Name = "ItemShelfDataGridViewTextBox";
+            this.ItemShelfDataGridViewTextBox.ReadOnly = true;
+            // 
+            // ItemRemarksDataGridViewTextBox
+            // 
+            this.ItemRemarksDataGridViewTextBox.DataPropertyName = "Remarks";
+            this.ItemRemarksDataGridViewTextBox.FillWeight = 30F;
+            this.ItemRemarksDataGridViewTextBox.HeaderText = "備註";
+            this.ItemRemarksDataGridViewTextBox.Name = "ItemRemarksDataGridViewTextBox";
+            this.ItemRemarksDataGridViewTextBox.ReadOnly = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.ItemPanel);
             this.Controls.Add(this.HomePanel);
             this.Controls.Add(this.AccountDayUserControl);
             this.Controls.Add(this.AccountMonthUserControl);
             this.Controls.Add(this.AccountYearUserControl);
-            this.Controls.Add(this.ItemPanel);
             this.Controls.Add(this.MemberDetailsPanel);
             this.Controls.Add(this.MemberListPanel);
             this.Controls.Add(this.HeaderPanel);
@@ -1002,12 +1003,12 @@
             this.HomePanel.ResumeLayout(false);
             this.MemberListPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MemberListDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MemberBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CoffeeHomeDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SexBindingSource)).EndInit();
             this.ItemPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ItemDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CoffeeHomeDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MemberBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SexBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemShelfBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PaymentTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TradeBindingSource)).EndInit();
@@ -1073,12 +1074,6 @@
         private CoffeeHomeDataSetTableAdapters.AccountTableAdapter AccountTableAdapter;
         private System.Windows.Forms.BindingSource RoastDegreeBindingSource;
         private CoffeeHomeDataSetTableAdapters.RoastDegreeTableAdapter RoastDegreeTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemIDDataGridViewTextBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemNameDataGridViewTextBox;
-        private System.Windows.Forms.DataGridViewButtonColumn ItemTypeIDDataGridViewTextBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemPriceDataGridViewTextBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemShelfDataGridViewTextBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemRemarksDataGridViewTextBox;
         private System.Windows.Forms.Timer IdleTimer;
         private System.Windows.Forms.Button ItemEditTypeButton;
         private System.Windows.Forms.Panel MemberListPanel;
@@ -1097,6 +1092,12 @@
         private AccountDayUserControl AccountDayUserControl;
         private System.Windows.Forms.Button MemberBackButton;
         private System.Windows.Forms.RichTextBox HomeRichTextBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemIDDataGridViewTextBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemNameDataGridViewTextBox;
+        private System.Windows.Forms.DataGridViewButtonColumn ItemTypeIDDataGridViewTextBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemPriceDataGridViewTextBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemShelfDataGridViewTextBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemRemarksDataGridViewTextBox;
     }
 }
 

@@ -547,17 +547,13 @@ namespace CoffeeHome
                 NewItemRow.TypeID = Form.TypeID;
                 NewItemRow.Price = Form.Price;
                 NewItemRow.Remarks = Form.Remarks;
+                NewItemRow.OnShelf = true;
                 this.CoffeeHomeDataSet.Item.Rows.Add(NewItemRow);
-
-                CoffeeHomeDataSet.ItemShelfRow ItemShelfRowToAdd = this.CoffeeHomeDataSet.ItemShelf.NewItemShelfRow();
-                ItemShelfRowToAdd.ItemID = NewItemRow.ID;
-                this.CoffeeHomeDataSet.ItemShelf.Rows.Add(ItemShelfRowToAdd);
 
                 this.ItemBindingSource.EndEdit();
                 this.ItemTableAdapter.Update(this.CoffeeHomeDataSet.Item);
-                this.ItemShelfBindingSource.EndEdit();
-                this.ItemShelfTableAdapter.Update(this.CoffeeHomeDataSet.ItemShelf);
                 this.ItemDataGridView.DataSource = this.CoffeeHomeDataSet.Item;
+                this.ItemDataGridView.FirstDisplayedScrollingRowIndex = this.ItemDataGridView.Rows.Count - 1;
             }
         }
 
@@ -571,15 +567,13 @@ namespace CoffeeHome
         {
             foreach (DataGridViewRow Row in this.ItemDataGridView.SelectedRows)
             {
-                CoffeeHomeDataSet.ItemShelfRow ItemShelfRowToAdd = this.CoffeeHomeDataSet.ItemShelf.NewItemShelfRow();
-                ItemShelfRowToAdd.ItemID = (int)Row.Cells[0].Value;
-                this.CoffeeHomeDataSet.ItemShelf.Rows.Add(ItemShelfRowToAdd);
+                int ItemID = (int)Row.Cells[0].Value;
+                CoffeeHomeDataSet.ItemRow ItemRow = this.CoffeeHomeDataSet.Item.FindByID(ItemID);
+                ItemRow.OnShelf = true;
             }
 
-            this.ItemShelfBindingSource.EndEdit();
-            this.ItemShelfTableAdapter.Update(this.CoffeeHomeDataSet.ItemShelf);
-            this.ItemTableAdapter.Fill(this.CoffeeHomeDataSet.Item);
-            this.ItemDataGridView.DataSource = this.CoffeeHomeDataSet.Item;
+            this.ItemBindingSource.EndEdit();
+            this.ItemTableAdapter.Update(this.CoffeeHomeDataSet.Item);
         }
 
         private void ItemRemoveFromShelfButton_Click(object sender, EventArgs e)
@@ -587,17 +581,12 @@ namespace CoffeeHome
             foreach (DataGridViewRow Row in this.ItemDataGridView.SelectedRows)
             {
                 int ItemID = (int)Row.Cells[0].Value;
-                CoffeeHomeDataSet.ItemShelfRow ItemShelfRowToDelete = this.CoffeeHomeDataSet.ItemShelf.FindByItemID(ItemID);
-                if (ItemShelfRowToDelete != null)
-                {
-                    ItemShelfRowToDelete.Delete();
-                }
+                CoffeeHomeDataSet.ItemRow ItemRow = this.CoffeeHomeDataSet.Item.FindByID(ItemID);
+                ItemRow.OnShelf = false;
             }
 
-            this.ItemShelfBindingSource.EndEdit();
-            this.ItemShelfTableAdapter.Update(this.CoffeeHomeDataSet.ItemShelf);
-            this.ItemTableAdapter.Fill(this.CoffeeHomeDataSet.Item);
-            this.ItemDataGridView.DataSource = this.CoffeeHomeDataSet.Item;
+            this.ItemBindingSource.EndEdit();
+            this.ItemTableAdapter.Update(this.CoffeeHomeDataSet.Item);
         }
 
         private void ItemDeleteButton_Click(object sender, EventArgs e)
@@ -610,14 +599,11 @@ namespace CoffeeHome
                 if (Result == DialogResult.Yes)
                 {
                     this.CoffeeHomeDataSet.Item.FindByID(ItemID).Delete();
-                    this.CoffeeHomeDataSet.ItemShelf.FindByItemID(ItemID).Delete();
                 }
             }
 
             this.ItemBindingSource.EndEdit();
             this.ItemTableAdapter.Update(this.CoffeeHomeDataSet.Item);
-            this.ItemShelfBindingSource.EndEdit();
-            this.ItemShelfTableAdapter.Update(this.CoffeeHomeDataSet.ItemShelf);
             this.ItemDataGridView.DataSource = this.CoffeeHomeDataSet.Item;
         }
 
@@ -654,8 +640,8 @@ namespace CoffeeHome
             }
             if (e.ColumnIndex == 4)
             {
-                int ItemID = (int)this.ItemDataGridView[0, e.RowIndex].Value;
-                if (this.CoffeeHomeDataSet.ItemShelf.FindByItemID(ItemID) != null)
+                bool OnShelf = (bool)e.Value;
+                if (OnShelf)
                 {
                     e.Value = "上架";
                 }
@@ -711,7 +697,6 @@ namespace CoffeeHome
         }
 
         #endregion
-
 
         #endregion
 
