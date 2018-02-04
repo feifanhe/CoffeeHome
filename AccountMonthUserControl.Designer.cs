@@ -29,9 +29,22 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel1 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
+            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel2 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
+            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel3 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
+            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel4 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
+            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel5 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
+            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel6 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
+            System.Windows.Forms.DataVisualization.Charting.CustomLabel customLabel7 = new System.Windows.Forms.DataVisualization.Charting.CustomLabel();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.AccountMonthPanel = new System.Windows.Forms.Panel();
+            this.AccountMonthChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.AccountMonthStatisticsPanel = new System.Windows.Forms.Panel();
             this.AccountMonthSalesPanel2 = new System.Windows.Forms.Panel();
             this.AccountMonthAchievementPanel = new System.Windows.Forms.Panel();
@@ -59,8 +72,8 @@
             this.AccountMonthSelectPanel = new System.Windows.Forms.Panel();
             this.AccountMonthMonthComboBox = new System.Windows.Forms.ComboBox();
             this.AccountMonthYearComboBox = new System.Windows.Forms.ComboBox();
-            this.AccountMonthChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.AccountMonthPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AccountMonthChart)).BeginInit();
             this.AccountMonthStatisticsPanel.SuspendLayout();
             this.AccountMonthSalesPanel2.SuspendLayout();
             this.AccountMonthAchievementPanel.SuspendLayout();
@@ -72,7 +85,6 @@
             this.AccountMonthNoReceiptPanel.SuspendLayout();
             this.AccountMonthReceiptPanel.SuspendLayout();
             this.AccountMonthSelectPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AccountMonthChart)).BeginInit();
             this.SuspendLayout();
             // 
             // AccountMonthPanel
@@ -85,6 +97,107 @@
             this.AccountMonthPanel.Name = "AccountMonthPanel";
             this.AccountMonthPanel.Size = new System.Drawing.Size(1024, 600);
             this.AccountMonthPanel.TabIndex = 7;
+            // 
+            // AccountMonthChart
+            // 
+            customLabel1.FromPosition = -0.5D;
+            customLabel1.Text = "星期日";
+            customLabel1.ToPosition = 0.5D;
+            customLabel2.FromPosition = 0.5D;
+            customLabel2.Text = "星期一";
+            customLabel2.ToPosition = 1.5D;
+            customLabel3.FromPosition = 1.5D;
+            customLabel3.Text = "星期二";
+            customLabel3.ToPosition = 2.5D;
+            customLabel4.FromPosition = 2.5D;
+            customLabel4.Text = "星期三";
+            customLabel4.ToPosition = 3.5D;
+            customLabel5.FromPosition = 3.5D;
+            customLabel5.Text = "星期四";
+            customLabel5.ToPosition = 4.5D;
+            customLabel6.FromPosition = 4.5D;
+            customLabel6.Text = "星期五";
+            customLabel6.ToPosition = 5.5D;
+            customLabel7.FromPosition = 5.5D;
+            customLabel7.Text = "星期六";
+            customLabel7.ToPosition = 6.5D;
+            chartArea1.AxisX.CustomLabels.Add(customLabel1);
+            chartArea1.AxisX.CustomLabels.Add(customLabel2);
+            chartArea1.AxisX.CustomLabels.Add(customLabel3);
+            chartArea1.AxisX.CustomLabels.Add(customLabel4);
+            chartArea1.AxisX.CustomLabels.Add(customLabel5);
+            chartArea1.AxisX.CustomLabels.Add(customLabel6);
+            chartArea1.AxisX.CustomLabels.Add(customLabel7);
+            chartArea1.AxisX.Maximum = 6D;
+            chartArea1.AxisX.Minimum = 0D;
+            chartArea1.Name = "AccountMonthChartArea";
+            this.AccountMonthChart.ChartAreas.Add(chartArea1);
+            this.AccountMonthChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            legend1.IsTextAutoFit = false;
+            legend1.Name = "AccountMonthLegend";
+            this.AccountMonthChart.Legends.Add(legend1);
+            this.AccountMonthChart.Location = new System.Drawing.Point(0, 150);
+            this.AccountMonthChart.Name = "AccountMonthChart";
+            this.AccountMonthChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+            series1.BorderWidth = 3;
+            series1.ChartArea = "AccountMonthChartArea";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.CustomProperties = "EmptyPointValue=Zero";
+            series1.Legend = "AccountMonthLegend";
+            series1.LegendText = "第一週";
+            series1.MarkerSize = 10;
+            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series1.Name = "WeekSeries0";
+            series2.BorderWidth = 3;
+            series2.ChartArea = "AccountMonthChartArea";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "AccountMonthLegend";
+            series2.LegendText = "第二週";
+            series2.MarkerSize = 10;
+            series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series2.Name = "WeekSeries1";
+            series3.BorderWidth = 3;
+            series3.ChartArea = "AccountMonthChartArea";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "AccountMonthLegend";
+            series3.LegendText = "第三週";
+            series3.MarkerSize = 10;
+            series3.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series3.Name = "WeekSeries2";
+            series4.BorderWidth = 3;
+            series4.ChartArea = "AccountMonthChartArea";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Legend = "AccountMonthLegend";
+            series4.LegendText = "第四週";
+            series4.MarkerSize = 10;
+            series4.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series4.Name = "WeekSeries3";
+            series5.BorderWidth = 3;
+            series5.ChartArea = "AccountMonthChartArea";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.Legend = "AccountMonthLegend";
+            series5.LegendText = "第五週";
+            series5.MarkerSize = 10;
+            series5.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series5.Name = "WeekSeries4";
+            series6.BorderWidth = 3;
+            series6.ChartArea = "AccountMonthChartArea";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series6.Legend = "AccountMonthLegend";
+            series6.LegendText = "第六週";
+            series6.MarkerSize = 10;
+            series6.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series6.Name = "WeekSeries5";
+            this.AccountMonthChart.Series.Add(series1);
+            this.AccountMonthChart.Series.Add(series2);
+            this.AccountMonthChart.Series.Add(series3);
+            this.AccountMonthChart.Series.Add(series4);
+            this.AccountMonthChart.Series.Add(series5);
+            this.AccountMonthChart.Series.Add(series6);
+            this.AccountMonthChart.Size = new System.Drawing.Size(1024, 450);
+            this.AccountMonthChart.TabIndex = 2;
+            this.AccountMonthChart.Text = "chart1";
             // 
             // AccountMonthStatisticsPanel
             // 
@@ -386,29 +499,6 @@
             this.AccountMonthYearComboBox.TabIndex = 0;
             this.AccountMonthYearComboBox.SelectedIndexChanged += new System.EventHandler(this.AccountMonthYearComboBox_SelectedIndexChanged);
             // 
-            // AccountMonthChart
-            // 
-            chartArea1.Name = "AccountMonthChartArea";
-            this.AccountMonthChart.ChartAreas.Add(chartArea1);
-            this.AccountMonthChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            legend1.IsTextAutoFit = false;
-            legend1.Name = "AccountMonthLegend";
-            this.AccountMonthChart.Legends.Add(legend1);
-            this.AccountMonthChart.Location = new System.Drawing.Point(0, 150);
-            this.AccountMonthChart.Name = "AccountMonthChart";
-            series1.ChartArea = "AccountMonthChartArea";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series1.IsValueShownAsLabel = true;
-            series1.Legend = "AccountMonthLegend";
-            series1.Name = "AccountMonthSeries";
-            series1.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
-            this.AccountMonthChart.Series.Add(series1);
-            this.AccountMonthChart.Size = new System.Drawing.Size(1024, 450);
-            this.AccountMonthChart.TabIndex = 2;
-            this.AccountMonthChart.Text = "chart1";
-            // 
             // AccountMonthUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -417,6 +507,7 @@
             this.Name = "AccountMonthUserControl";
             this.Size = new System.Drawing.Size(1024, 600);
             this.AccountMonthPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.AccountMonthChart)).EndInit();
             this.AccountMonthStatisticsPanel.ResumeLayout(false);
             this.AccountMonthSalesPanel2.ResumeLayout(false);
             this.AccountMonthAchievementPanel.ResumeLayout(false);
@@ -435,7 +526,6 @@
             this.AccountMonthReceiptPanel.ResumeLayout(false);
             this.AccountMonthReceiptPanel.PerformLayout();
             this.AccountMonthSelectPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.AccountMonthChart)).EndInit();
             this.ResumeLayout(false);
 
         }

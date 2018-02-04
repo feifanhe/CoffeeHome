@@ -127,18 +127,30 @@ namespace CoffeeHome
             }
 
             int RecentYear = DateTime.Today.Year;
-            int RecentMonth = DateTime.Today.Month;
             int SelectedYear = RecentYear - this.AccountMonthYearComboBox.SelectedIndex;
             int SelectedMonth = this.AccountMonthMonthComboBox.SelectedIndex + 1;
             DateTime FirstDayOfMonth = new DateTime(SelectedYear, SelectedMonth, 1);
             DateTime FirstDayOfNextMonth = FirstDayOfMonth.AddMonths(1);
+            int NumberOfWeek = 0;
 
-            string TimeQuery = "Time >= #" + FirstDayOfMonth.ToShortDateString() + "# AND Time < #" + FirstDayOfNextMonth.ToShortDateString() + "#";
-
-            DataRow[] TradeRows = this.CoffeeHomeDataSet.Trade.Select(TimeQuery);
-            this.RenderChart(TradeRows);
+            foreach (var Series in this.AccountMonthChart.Series)
+            {
+                Series.Points.Clear();
+                Series.IsVisibleInLegend = false;
+            }
+            
+            for (DateTime Day = FirstDayOfMonth; Day < FirstDayOfNextMonth; )
+            {
+                DateTime NextDay = Day.AddDays(1);
+                string TimeQuery = "Time >= #" + Day.ToShortDateString() + "# AND Time < #" + NextDay.ToShortDateString() + "#";
+                DataRow[] TradeRows = this.CoffeeHomeDataSet.Trade.Select(TimeQuery);
+                int Subtotal = CountSubtotal(TradeRows);
+                this.AccountMonthChart.Series[NumberOfWeek].Points.AddXY((int)Day.DayOfWeek, Subtotal);
+                this.AccountMonthChart.Series[NumberOfWeek].IsVisibleInLegend = true;
+                if (Day.DayOfWeek == DayOfWeek.Saturday) NumberOfWeek++;
+                Day = NextDay;
+            }
         }
-
 
         private int GetRootTypeID(int TypeID)
         {
@@ -147,62 +159,6 @@ namespace CoffeeHome
                 TypeID /= 10;
             }
             return TypeID;
-        }
-
-        private void RenderChart(DataRow[] TradeRows)
-        {
-            this.AccountMonthChart.Series[0].Points.Clear();
-            //this.AccountMonthChart.Series[1].Points.Clear();
-            //this.AccountMonthChart.Series[2].Points.Clear();
-            //this.AccountMonthChart.Series[3].Points.Clear();
-            //this.AccountMonthChart.Series[4].Points.Clear();
-
-            int BeansSubtotal = 0;
-            int InstrumentSubtotal = 0;
-            int CoffeeBagSubtotal = 0;
-            int DrinkSubtotal = 0;
-
-            foreach (CoffeeHomeDataSet.TradeRow TradeRow in TradeRows)
-            {
-                int TradeID = TradeRow.ID;
-                DateTime Time = TradeRow.Time;
-                
-                DataRow[] TradeItemRows = this.CoffeeHomeDataSet.TradeItem.Select("TradeID = " + TradeID.ToString());
-                foreach (CoffeeHomeDataSet.TradeItemRow TradeItemRow in TradeItemRows)
-                {
-                    int ItemID = TradeItemRow.ItemID;
-                    DataRow[] ItemRows = this.CoffeeHomeDataSet.Item.Select("ID = " + ItemID.ToString());
-                    foreach (CoffeeHomeDataSet.ItemRow ItemRow in ItemRows)
-                    {
-                        switch (GetRootTypeID(ItemRow.TypeID))
-                        {
-                            case 1:
-                                BeansSubtotal += ItemRow.Price * TradeItemRow.Amount;
-                                break;
-                            case 2:
-                                InstrumentSubtotal += ItemRow.Price * TradeItemRow.Amount;
-                                break;
-                            case 3:
-                                CoffeeBagSubtotal += ItemRow.Price * TradeItemRow.Amount;
-                                break;
-                            case 4:
-                                DrinkSubtotal += ItemRow.Price * TradeItemRow.Amount;
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                }
-            }
-
-            if (BeansSubtotal > 0)
-                this.AccountMonthChart.Series[0].Points.AddXY("咖啡豆", BeansSubtotal);
-            if (InstrumentSubtotal > 0)
-                this.AccountMonthChart.Series[0].Points.AddXY("器材", InstrumentSubtotal);
-            if (CoffeeBagSubtotal > 0)
-                this.AccountMonthChart.Series[0].Points.AddXY("掛耳包", CoffeeBagSubtotal);
-            if (DrinkSubtotal > 0)
-                this.AccountMonthChart.Series[0].Points.AddXY("咖啡", DrinkSubtotal);
         }
 
         private int CountSubtotal(DataRow[] TradeRows)
@@ -223,6 +179,40 @@ namespace CoffeeHome
                 Mistake += AccountRow.Mistake + AccountRow.Mistake2 + AccountRow.Mistake3;
             }
             return Mistake;
+        }
+
+        private void AccountMonthChart_FormatNumber(object sender, System.Windows.Forms.DataVisualization.Charting.FormatNumberEventArgs e)
+        {
+            if (e.ElementType == System.Windows.Forms.DataVisualization.Charting.ChartElementType.AxisLabels
+                && e.Format == "CustomAxisXFormat")
+            {
+                switch ((int)e.Value)
+                {
+                    case 0:
+                        e.LocalizedValue = "星期日";
+                        break;
+                    case 1:
+                        e.LocalizedValue = "星期一";
+                        break;
+                    case 2:
+                        e.LocalizedValue = "星期二";
+                        break;
+                    case 3:
+                        e.LocalizedValue = "星期三";
+                        break;
+                    case 4:
+                        e.LocalizedValue = "星期四";
+                        break;
+                    case 5:
+                        e.LocalizedValue = "星期五";
+                        break;
+                    case 6:
+                        e.LocalizedValue = "星期六";
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }

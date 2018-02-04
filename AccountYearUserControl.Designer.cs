@@ -115,6 +115,8 @@
             series1.LabelForeColor = System.Drawing.Color.Red;
             series1.Legend = "MonthAchievementLegend";
             series1.LegendText = "月營業額";
+            series1.MarkerSize = 10;
+            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series1.Name = "AchievementSeries";
             series1.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
             series1.SmartLabelStyle.CalloutLineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
@@ -130,6 +132,8 @@
             series2.LabelForeColor = System.Drawing.Color.ForestGreen;
             series2.Legend = "MonthAchievementLegend";
             series2.LegendText = "咖啡豆";
+            series2.MarkerSize = 7;
+            series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series2.Name = "BeansSubtotalSeries";
             series2.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
             series2.SmartLabelStyle.CalloutLineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
@@ -145,6 +149,8 @@
             series3.LabelForeColor = System.Drawing.Color.SkyBlue;
             series3.Legend = "MonthAchievementLegend";
             series3.LegendText = "器材";
+            series3.MarkerSize = 7;
+            series3.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series3.Name = "InstrumentSubtotalSeries";
             series3.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
             series3.SmartLabelStyle.CalloutLineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
@@ -160,6 +166,8 @@
             series4.LabelForeColor = System.Drawing.Color.Chocolate;
             series4.Legend = "MonthAchievementLegend";
             series4.LegendText = "掛耳包";
+            series4.MarkerSize = 7;
+            series4.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series4.Name = "CoffeeBagSubtotalSeries";
             series4.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
             series4.SmartLabelStyle.CalloutLineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
@@ -175,6 +183,8 @@
             series5.LabelForeColor = System.Drawing.Color.Violet;
             series5.Legend = "MonthAchievementLegend";
             series5.LegendText = "咖啡";
+            series5.MarkerSize = 7;
+            series5.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series5.Name = "DrinkSubtotalSeries";
             series5.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
             series5.SmartLabelStyle.CalloutLineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;

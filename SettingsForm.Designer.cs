@@ -36,9 +36,13 @@
             this.WorkingCapitalPanel = new System.Windows.Forms.Panel();
             this.WorkingCapitalTextBox = new System.Windows.Forms.TextBox();
             this.WorkingCapitalButton = new System.Windows.Forms.Button();
+            this.BackupPanel = new System.Windows.Forms.Panel();
+            this.BackupButton = new System.Windows.Forms.Button();
+            this.BackupFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.FooterPanel.SuspendLayout();
             this.BodyPanel.SuspendLayout();
             this.WorkingCapitalPanel.SuspendLayout();
+            this.BackupPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // HeaderPanel
@@ -93,6 +97,7 @@
             // BodyPanel
             // 
             this.BodyPanel.BackColor = System.Drawing.Color.White;
+            this.BodyPanel.Controls.Add(this.BackupPanel);
             this.BodyPanel.Controls.Add(this.WorkingCapitalPanel);
             this.BodyPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BodyPanel.Location = new System.Drawing.Point(0, 30);
@@ -133,6 +138,34 @@
             this.WorkingCapitalButton.Text = "預設週轉金";
             this.WorkingCapitalButton.UseVisualStyleBackColor = true;
             // 
+            // BackupPanel
+            // 
+            this.BackupPanel.Controls.Add(this.BackupButton);
+            this.BackupPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BackupPanel.Location = new System.Drawing.Point(0, 50);
+            this.BackupPanel.Name = "BackupPanel";
+            this.BackupPanel.Size = new System.Drawing.Size(464, 50);
+            this.BackupPanel.TabIndex = 1;
+            // 
+            // BackupButton
+            // 
+            this.BackupButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BackupButton.FlatAppearance.BorderSize = 0;
+            this.BackupButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BackupButton.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.BackupButton.Location = new System.Drawing.Point(0, 0);
+            this.BackupButton.Name = "BackupButton";
+            this.BackupButton.Size = new System.Drawing.Size(464, 50);
+            this.BackupButton.TabIndex = 1;
+            this.BackupButton.TabStop = false;
+            this.BackupButton.Text = "備份資料檔";
+            this.BackupButton.UseVisualStyleBackColor = true;
+            this.BackupButton.Click += new System.EventHandler(this.BackupButton_Click);
+            // 
+            // BackupFolderBrowserDialog
+            // 
+            this.BackupFolderBrowserDialog.SelectedPath = "E:\\";
+            // 
             // SettingsForm
             // 
             this.AcceptButton = this.FormOKButton;
@@ -151,6 +184,7 @@
             this.BodyPanel.ResumeLayout(false);
             this.WorkingCapitalPanel.ResumeLayout(false);
             this.WorkingCapitalPanel.PerformLayout();
+            this.BackupPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -165,5 +199,8 @@
         private System.Windows.Forms.Button FormOKButton;
         private System.Windows.Forms.Button WorkingCapitalButton;
         private System.Windows.Forms.TextBox WorkingCapitalTextBox;
+        private System.Windows.Forms.Panel BackupPanel;
+        private System.Windows.Forms.Button BackupButton;
+        private System.Windows.Forms.FolderBrowserDialog BackupFolderBrowserDialog;
     }
 }
