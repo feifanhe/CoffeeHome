@@ -821,10 +821,10 @@ namespace CoffeeHome {
                 this.columnID.ReadOnly = true;
                 this.columnID.Unique = true;
                 this.columnName.AllowDBNull = false;
-                this.columnName.MaxLength = 10;
+                this.columnName.MaxLength = 50;
                 this.columnSex.AllowDBNull = false;
                 this.columnPhoneNumber.AllowDBNull = false;
-                this.columnPhoneNumber.MaxLength = 20;
+                this.columnPhoneNumber.MaxLength = 50;
                 this.columnZipCode.MaxLength = 10;
                 this.columnAddress.MaxLength = 100;
                 this.columnEmail.MaxLength = 50;
@@ -5414,8 +5414,8 @@ SELECT ID, Name, Sex, PhoneNumber, ZipCode, Address, Email, Remarks FROM Member 
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DisplayName", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DisplayName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Sex] ([Code], [DisplayName]) VALUES (@Code, @DisplayName);\r\nSE" +
-                "LECT Code, DisplayName FROM Sex WHERE (Code = @Code)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Sex] ([Code], [DisplayName]) VALUES (@Code, @DisplayName);\nSEL" +
+                "ECT Code, DisplayName FROM Sex WHERE (Code = @Code)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Code", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Code", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DisplayName", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DisplayName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5747,8 +5747,8 @@ SELECT Code, DisplayName FROM Sex WHERE (Code = @Code)";
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Item] ([ID], [Name], [TypeID], [Price], [Remarks]) VALUES (@ID" +
-                ", @Name, @TypeID, @Price, @Remarks);\r\nSELECT ID, Name, TypeID, Price, Remarks FR" +
-                "OM Item WHERE (ID = @ID)";
+                ", @Name, @TypeID, @Price, @Remarks);\nSELECT ID, Name, TypeID, Price, Remarks FRO" +
+                "M Item WHERE (ID = @ID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6146,14 +6146,14 @@ SELECT ID, Name, TypeID, Price, Remarks, OnShelf FROM Item WHERE (ID = @ID)";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ItemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ItemID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[ItemShelf] ([ItemID]) VALUES (@ItemID);\r\nSELECT ItemID FROM It" +
-                "emShelf WHERE (ItemID = @ItemID)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[ItemShelf] ([ItemID]) VALUES (@ItemID);\nSELECT ItemID FROM Ite" +
+                "mShelf WHERE (ItemID = @ItemID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ItemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ItemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[ItemShelf] SET [ItemID] = @ItemID WHERE (([ItemID] = @Original_Item" +
-                "ID));\r\nSELECT ItemID FROM ItemShelf WHERE (ItemID = @ItemID)";
+                "ID));\nSELECT ItemID FROM ItemShelf WHERE (ItemID = @ItemID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ItemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ItemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ItemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ItemID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -6446,8 +6446,8 @@ SELECT ID, Name, TypeID, Price, Remarks, OnShelf FROM Item WHERE (ID = @ID)";
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TradeItem] ([ID], [TradeID], [ItemID], [Amount], [RoastDegreeI" +
-                "D]) VALUES (@ID, @TradeID, @ItemID, @Amount, @RoastDegreeID);\r\nSELECT ID, TradeI" +
-                "D, ItemID, Amount, RoastDegreeID FROM TradeItem WHERE (ID = @ID)";
+                "D]) VALUES (@ID, @TradeID, @ItemID, @Amount, @RoastDegreeID);\nSELECT ID, TradeID" +
+                ", ItemID, Amount, RoastDegreeID FROM TradeItem WHERE (ID = @ID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TradeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TradeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6766,16 +6766,16 @@ SELECT ID, TradeID, ItemID, Amount, RoastDegreeID FROM TradeItem WHERE (ID = @ID
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[PaymentType] ([ID], [Name]) VALUES (@ID, @Name);\r\nSELECT ID, N" +
-                "ame FROM PaymentType WHERE (ID = @ID)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[PaymentType] ([ID], [Name]) VALUES (@ID, @Name);\nSELECT ID, Na" +
+                "me FROM PaymentType WHERE (ID = @ID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[PaymentType] SET [ID] = @ID, [Name] = @Name WHERE (([ID] = @Origina" +
-                "l_ID) AND ([Name] = @Original_Name));\r\nSELECT ID, Name FROM PaymentType WHERE (I" +
-                "D = @ID)";
+                "l_ID) AND ([Name] = @Original_Name));\nSELECT ID, Name FROM PaymentType WHERE (ID" +
+                " = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -7086,16 +7086,16 @@ SELECT ID, TradeID, ItemID, Amount, RoastDegreeID FROM TradeItem WHERE (ID = @ID
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[RoastDegree] ([ID], [Name]) VALUES (@ID, @Name);\r\nSELECT ID, N" +
-                "ame FROM RoastDegree WHERE (ID = @ID)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[RoastDegree] ([ID], [Name]) VALUES (@ID, @Name);\nSELECT ID, Na" +
+                "me FROM RoastDegree WHERE (ID = @ID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[RoastDegree] SET [ID] = @ID, [Name] = @Name WHERE (([ID] = @Origina" +
-                "l_ID) AND ([Name] = @Original_Name));\r\nSELECT ID, Name FROM RoastDegree WHERE (I" +
-                "D = @ID)";
+                "l_ID) AND ([Name] = @Original_Name));\nSELECT ID, Name FROM RoastDegree WHERE (ID" +
+                " = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -7409,7 +7409,7 @@ SELECT ID, TradeID, ItemID, Amount, RoastDegreeID FROM TradeItem WHERE (ID = @ID
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[ItemType] ([ID], [FatherID], [Name]) VALUES (@ID, @FatherID, @" +
-                "Name);\r\nSELECT ID, FatherID, Name FROM ItemType WHERE (ID = @ID)";
+                "Name);\nSELECT ID, FatherID, Name FROM ItemType WHERE (ID = @ID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FatherID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FatherID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -7418,7 +7418,7 @@ SELECT ID, TradeID, ItemID, Amount, RoastDegreeID FROM TradeItem WHERE (ID = @ID
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[ItemType] SET [ID] = @ID, [FatherID] = @FatherID, [Name] = @Name WH" +
                 "ERE (([ID] = @Original_ID) AND ([FatherID] = @Original_FatherID) AND ([Name] = @" +
-                "Original_Name));\r\nSELECT ID, FatherID, Name FROM ItemType WHERE (ID = @ID)";
+                "Original_Name));\nSELECT ID, FatherID, Name FROM ItemType WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FatherID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FatherID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -7747,8 +7747,8 @@ SELECT ID, TradeID, ItemID, Amount, RoastDegreeID FROM TradeItem WHERE (ID = @ID
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Trade] ([ID], [MemberID], [Time], [PaymentTypeID], [Receipt], " +
                 "[Subtotal]) VALUES (@ID, @MemberID, @Time, @PaymentTypeID, @Receipt, @Subtotal);" +
-                "\r\nSELECT ID, MemberID, Time, PaymentTypeID, Receipt, Subtotal FROM Trade WHERE (" +
-                "ID = @ID)";
+                "\nSELECT ID, MemberID, Time, PaymentTypeID, Receipt, Subtotal FROM Trade WHERE (I" +
+                "D = @ID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MemberID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MemberID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));

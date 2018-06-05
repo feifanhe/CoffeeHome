@@ -81,3 +81,31 @@ C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.MemberDet
 C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.MemberDetailsTabUserControl.resources
 C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\bin\Release\CoffeeHome.rtf
 C:\Users\Fei-fan He\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.csprojResolveAssemblyReference.cache
+E:\Documents\GitHub\CoffeeHome\bin\Release\CoffeeHome.exe.config
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.exe
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.pdb
+E:\Documents\GitHub\CoffeeHome\bin\Release\CoffeeHome.mdf
+E:\Documents\GitHub\CoffeeHome\bin\Release\CoffeeHome_log.ldf
+E:\Documents\GitHub\CoffeeHome\bin\Release\CoffeeHome.rtf
+E:\Documents\GitHub\CoffeeHome\bin\Release\CoffeeHome.exe
+E:\Documents\GitHub\CoffeeHome\bin\Release\CoffeeHome.pdb
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.csprojResolveAssemblyReference.cache
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.AccountDayUserControl.resources
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.AccountMonthUserControl.resources
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.AccountYearUserControl.resources
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.BigCheckBox.resources
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.ItemTypeEditForm.resources
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.ItemTypeSelectionForm.resources
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.MainForm.resources
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.ItemDataForm.resources
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.MemberDataForm.resources
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.MemberDetailsTabUserControl.resources
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.MemberDetailsUserControl.resources
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.MemberRemarksEditForm.resources
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.TestForm.resources
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.TradeForm.resources
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.Properties.Resources.resources
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.SearchMemberForm.resources
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.SearchItemForm.resources
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.SettingsForm.resources
+E:\Documents\GitHub\CoffeeHome\obj\Release\CoffeeHome.csproj.GenerateResource.Cache

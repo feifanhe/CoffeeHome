@@ -615,14 +615,14 @@ SELECT ID, Time, WorkingCapital, Mistake, Mistake2, Mistake3 FROM Account WHERE 
   <xs:element name="CoffeeHomeDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="CoffeeHomeDataSet" msprop:Generator_UserDSName="CoffeeHomeDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Member" msprop:Generator_TableClassName="MemberDataTable" msprop:Generator_TableVarName="tableMember" msprop:Generator_TablePropName="Member" msprop:Generator_RowDeletingName="MemberRowDeleting" msprop:Generator_RowChangingName="MemberRowChanging" msprop:Generator_RowEvHandlerName="MemberRowChangeEventHandler" msprop:Generator_RowDeletedName="MemberRowDeleted" msprop:Generator_UserTableName="Member" msprop:Generator_RowChangedName="MemberRowChanged" msprop:Generator_RowEvArgName="MemberRowChangeEvent" msprop:Generator_RowClassName="MemberRow">
+        <xs:element name="Member" msprop:Generator_TableClassName="MemberDataTable" msprop:Generator_TableVarName="tableMember" msprop:Generator_RowChangedName="MemberRowChanged" msprop:Generator_TablePropName="Member" msprop:Generator_RowDeletingName="MemberRowDeleting" msprop:Generator_RowChangingName="MemberRowChanging" msprop:Generator_RowEvHandlerName="MemberRowChangeEventHandler" msprop:Generator_RowDeletedName="MemberRowDeleted" msprop:Generator_RowClassName="MemberRow" msprop:Generator_UserTableName="Member" msprop:Generator_RowEvArgName="MemberRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
               <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="10" />
+                    <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -630,7 +630,7 @@ SELECT ID, Time, WorkingCapital, Mistake, Mistake2, Mistake3 FROM Account WHERE 
               <xs:element name="PhoneNumber" msprop:Generator_ColumnVarNameInTable="columnPhoneNumber" msprop:Generator_ColumnPropNameInRow="PhoneNumber" msprop:Generator_ColumnPropNameInTable="PhoneNumberColumn" msprop:Generator_UserColumnName="PhoneNumber">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="20" />
+                    <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -665,7 +665,7 @@ SELECT ID, Time, WorkingCapital, Mistake, Mistake2, Mistake3 FROM Account WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Sex" msprop:Generator_TableClassName="SexDataTable" msprop:Generator_TableVarName="tableSex" msprop:Generator_TablePropName="Sex" msprop:Generator_RowDeletingName="SexRowDeleting" msprop:Generator_RowChangingName="SexRowChanging" msprop:Generator_RowEvHandlerName="SexRowChangeEventHandler" msprop:Generator_RowDeletedName="SexRowDeleted" msprop:Generator_UserTableName="Sex" msprop:Generator_RowChangedName="SexRowChanged" msprop:Generator_RowEvArgName="SexRowChangeEvent" msprop:Generator_RowClassName="SexRow">
+        <xs:element name="Sex" msprop:Generator_TableClassName="SexDataTable" msprop:Generator_TableVarName="tableSex" msprop:Generator_RowChangedName="SexRowChanged" msprop:Generator_TablePropName="Sex" msprop:Generator_RowDeletingName="SexRowDeleting" msprop:Generator_RowChangingName="SexRowChanging" msprop:Generator_RowEvHandlerName="SexRowChangeEventHandler" msprop:Generator_RowDeletedName="SexRowDeleted" msprop:Generator_RowClassName="SexRow" msprop:Generator_UserTableName="Sex" msprop:Generator_RowEvArgName="SexRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Code" msprop:Generator_ColumnVarNameInTable="columnCode" msprop:Generator_ColumnPropNameInRow="Code" msprop:Generator_ColumnPropNameInTable="CodeColumn" msprop:Generator_UserColumnName="Code" type="xs:unsignedByte" />
@@ -679,7 +679,7 @@ SELECT ID, Time, WorkingCapital, Mistake, Mistake2, Mistake3 FROM Account WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Item" msprop:Generator_TableClassName="ItemDataTable" msprop:Generator_TableVarName="tableItem" msprop:Generator_TablePropName="Item" msprop:Generator_RowDeletingName="ItemRowDeleting" msprop:Generator_RowChangingName="ItemRowChanging" msprop:Generator_RowEvHandlerName="ItemRowChangeEventHandler" msprop:Generator_RowDeletedName="ItemRowDeleted" msprop:Generator_UserTableName="Item" msprop:Generator_RowChangedName="ItemRowChanged" msprop:Generator_RowEvArgName="ItemRowChangeEvent" msprop:Generator_RowClassName="ItemRow">
+        <xs:element name="Item" msprop:Generator_TableClassName="ItemDataTable" msprop:Generator_TableVarName="tableItem" msprop:Generator_RowChangedName="ItemRowChanged" msprop:Generator_TablePropName="Item" msprop:Generator_RowDeletingName="ItemRowDeleting" msprop:Generator_RowChangingName="ItemRowChanging" msprop:Generator_RowEvHandlerName="ItemRowChangeEventHandler" msprop:Generator_RowDeletedName="ItemRowDeleted" msprop:Generator_RowClassName="ItemRow" msprop:Generator_UserTableName="Item" msprop:Generator_RowEvArgName="ItemRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -703,14 +703,14 @@ SELECT ID, Time, WorkingCapital, Mistake, Mistake2, Mistake3 FROM Account WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ItemShelf" msprop:Generator_TableClassName="ItemShelfDataTable" msprop:Generator_TableVarName="tableItemShelf" msprop:Generator_TablePropName="ItemShelf" msprop:Generator_RowDeletingName="ItemShelfRowDeleting" msprop:Generator_RowChangingName="ItemShelfRowChanging" msprop:Generator_RowEvHandlerName="ItemShelfRowChangeEventHandler" msprop:Generator_RowDeletedName="ItemShelfRowDeleted" msprop:Generator_UserTableName="ItemShelf" msprop:Generator_RowChangedName="ItemShelfRowChanged" msprop:Generator_RowEvArgName="ItemShelfRowChangeEvent" msprop:Generator_RowClassName="ItemShelfRow">
+        <xs:element name="ItemShelf" msprop:Generator_TableClassName="ItemShelfDataTable" msprop:Generator_TableVarName="tableItemShelf" msprop:Generator_RowChangedName="ItemShelfRowChanged" msprop:Generator_TablePropName="ItemShelf" msprop:Generator_RowDeletingName="ItemShelfRowDeleting" msprop:Generator_RowChangingName="ItemShelfRowChanging" msprop:Generator_RowEvHandlerName="ItemShelfRowChangeEventHandler" msprop:Generator_RowDeletedName="ItemShelfRowDeleted" msprop:Generator_RowClassName="ItemShelfRow" msprop:Generator_UserTableName="ItemShelf" msprop:Generator_RowEvArgName="ItemShelfRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ItemID" msprop:Generator_ColumnVarNameInTable="columnItemID" msprop:Generator_ColumnPropNameInRow="ItemID" msprop:Generator_ColumnPropNameInTable="ItemIDColumn" msprop:Generator_UserColumnName="ItemID" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TradeItem" msprop:Generator_TableClassName="TradeItemDataTable" msprop:Generator_TableVarName="tableTradeItem" msprop:Generator_RowChangedName="TradeItemRowChanged" msprop:Generator_TablePropName="TradeItem" msprop:Generator_RowDeletingName="TradeItemRowDeleting" msprop:Generator_RowChangingName="TradeItemRowChanging" msprop:Generator_RowEvHandlerName="TradeItemRowChangeEventHandler" msprop:Generator_RowDeletedName="TradeItemRowDeleted" msprop:Generator_RowClassName="TradeItemRow" msprop:Generator_UserTableName="TradeItem" msprop:Generator_RowEvArgName="TradeItemRowChangeEvent">
+        <xs:element name="TradeItem" msprop:Generator_TableClassName="TradeItemDataTable" msprop:Generator_TableVarName="tableTradeItem" msprop:Generator_TablePropName="TradeItem" msprop:Generator_RowDeletingName="TradeItemRowDeleting" msprop:Generator_RowChangingName="TradeItemRowChanging" msprop:Generator_RowEvHandlerName="TradeItemRowChangeEventHandler" msprop:Generator_RowDeletedName="TradeItemRowDeleted" msprop:Generator_UserTableName="TradeItem" msprop:Generator_RowChangedName="TradeItemRowChanged" msprop:Generator_RowEvArgName="TradeItemRowChangeEvent" msprop:Generator_RowClassName="TradeItemRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -721,7 +721,7 @@ SELECT ID, Time, WorkingCapital, Mistake, Mistake2, Mistake3 FROM Account WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PaymentType" msprop:Generator_TableClassName="PaymentTypeDataTable" msprop:Generator_TableVarName="tablePaymentType" msprop:Generator_RowChangedName="PaymentTypeRowChanged" msprop:Generator_TablePropName="PaymentType" msprop:Generator_RowDeletingName="PaymentTypeRowDeleting" msprop:Generator_RowChangingName="PaymentTypeRowChanging" msprop:Generator_RowEvHandlerName="PaymentTypeRowChangeEventHandler" msprop:Generator_RowDeletedName="PaymentTypeRowDeleted" msprop:Generator_RowClassName="PaymentTypeRow" msprop:Generator_UserTableName="PaymentType" msprop:Generator_RowEvArgName="PaymentTypeRowChangeEvent">
+        <xs:element name="PaymentType" msprop:Generator_TableClassName="PaymentTypeDataTable" msprop:Generator_TableVarName="tablePaymentType" msprop:Generator_TablePropName="PaymentType" msprop:Generator_RowDeletingName="PaymentTypeRowDeleting" msprop:Generator_RowChangingName="PaymentTypeRowChanging" msprop:Generator_RowEvHandlerName="PaymentTypeRowChangeEventHandler" msprop:Generator_RowDeletedName="PaymentTypeRowDeleted" msprop:Generator_UserTableName="PaymentType" msprop:Generator_RowChangedName="PaymentTypeRowChanged" msprop:Generator_RowEvArgName="PaymentTypeRowChangeEvent" msprop:Generator_RowClassName="PaymentTypeRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -735,7 +735,7 @@ SELECT ID, Time, WorkingCapital, Mistake, Mistake2, Mistake3 FROM Account WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="RoastDegree" msprop:Generator_TableClassName="RoastDegreeDataTable" msprop:Generator_TableVarName="tableRoastDegree" msprop:Generator_RowChangedName="RoastDegreeRowChanged" msprop:Generator_TablePropName="RoastDegree" msprop:Generator_RowDeletingName="RoastDegreeRowDeleting" msprop:Generator_RowChangingName="RoastDegreeRowChanging" msprop:Generator_RowEvHandlerName="RoastDegreeRowChangeEventHandler" msprop:Generator_RowDeletedName="RoastDegreeRowDeleted" msprop:Generator_RowClassName="RoastDegreeRow" msprop:Generator_UserTableName="RoastDegree" msprop:Generator_RowEvArgName="RoastDegreeRowChangeEvent">
+        <xs:element name="RoastDegree" msprop:Generator_TableClassName="RoastDegreeDataTable" msprop:Generator_TableVarName="tableRoastDegree" msprop:Generator_TablePropName="RoastDegree" msprop:Generator_RowDeletingName="RoastDegreeRowDeleting" msprop:Generator_RowChangingName="RoastDegreeRowChanging" msprop:Generator_RowEvHandlerName="RoastDegreeRowChangeEventHandler" msprop:Generator_RowDeletedName="RoastDegreeRowDeleted" msprop:Generator_UserTableName="RoastDegree" msprop:Generator_RowChangedName="RoastDegreeRowChanged" msprop:Generator_RowEvArgName="RoastDegreeRowChangeEvent" msprop:Generator_RowClassName="RoastDegreeRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -749,7 +749,7 @@ SELECT ID, Time, WorkingCapital, Mistake, Mistake2, Mistake3 FROM Account WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ItemType" msprop:Generator_TableClassName="ItemTypeDataTable" msprop:Generator_TableVarName="tableItemType" msprop:Generator_RowChangedName="ItemTypeRowChanged" msprop:Generator_TablePropName="ItemType" msprop:Generator_RowDeletingName="ItemTypeRowDeleting" msprop:Generator_RowChangingName="ItemTypeRowChanging" msprop:Generator_RowEvHandlerName="ItemTypeRowChangeEventHandler" msprop:Generator_RowDeletedName="ItemTypeRowDeleted" msprop:Generator_RowClassName="ItemTypeRow" msprop:Generator_UserTableName="ItemType" msprop:Generator_RowEvArgName="ItemTypeRowChangeEvent">
+        <xs:element name="ItemType" msprop:Generator_TableClassName="ItemTypeDataTable" msprop:Generator_TableVarName="tableItemType" msprop:Generator_TablePropName="ItemType" msprop:Generator_RowDeletingName="ItemTypeRowDeleting" msprop:Generator_RowChangingName="ItemTypeRowChanging" msprop:Generator_RowEvHandlerName="ItemTypeRowChangeEventHandler" msprop:Generator_RowDeletedName="ItemTypeRowDeleted" msprop:Generator_UserTableName="ItemType" msprop:Generator_RowChangedName="ItemTypeRowChanged" msprop:Generator_RowEvArgName="ItemTypeRowChangeEvent" msprop:Generator_RowClassName="ItemTypeRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -764,7 +764,7 @@ SELECT ID, Time, WorkingCapital, Mistake, Mistake2, Mistake3 FROM Account WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Trade" msprop:Generator_TableClassName="TradeDataTable" msprop:Generator_TableVarName="tableTrade" msprop:Generator_TablePropName="Trade" msprop:Generator_RowDeletingName="TradeRowDeleting" msprop:Generator_RowChangingName="TradeRowChanging" msprop:Generator_RowEvHandlerName="TradeRowChangeEventHandler" msprop:Generator_RowDeletedName="TradeRowDeleted" msprop:Generator_UserTableName="Trade" msprop:Generator_RowChangedName="TradeRowChanged" msprop:Generator_RowEvArgName="TradeRowChangeEvent" msprop:Generator_RowClassName="TradeRow">
+        <xs:element name="Trade" msprop:Generator_TableClassName="TradeDataTable" msprop:Generator_TableVarName="tableTrade" msprop:Generator_RowChangedName="TradeRowChanged" msprop:Generator_TablePropName="Trade" msprop:Generator_RowDeletingName="TradeRowDeleting" msprop:Generator_RowChangingName="TradeRowChanging" msprop:Generator_RowEvHandlerName="TradeRowChangeEventHandler" msprop:Generator_RowDeletedName="TradeRowDeleted" msprop:Generator_RowClassName="TradeRow" msprop:Generator_UserTableName="Trade" msprop:Generator_RowEvArgName="TradeRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -776,7 +776,7 @@ SELECT ID, Time, WorkingCapital, Mistake, Mistake2, Mistake3 FROM Account WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Account" msprop:Generator_TableClassName="AccountDataTable" msprop:Generator_TableVarName="tableAccount" msprop:Generator_TablePropName="Account" msprop:Generator_RowDeletingName="AccountRowDeleting" msprop:Generator_RowChangingName="AccountRowChanging" msprop:Generator_RowEvHandlerName="AccountRowChangeEventHandler" msprop:Generator_RowDeletedName="AccountRowDeleted" msprop:Generator_UserTableName="Account" msprop:Generator_RowChangedName="AccountRowChanged" msprop:Generator_RowEvArgName="AccountRowChangeEvent" msprop:Generator_RowClassName="AccountRow">
+        <xs:element name="Account" msprop:Generator_TableClassName="AccountDataTable" msprop:Generator_TableVarName="tableAccount" msprop:Generator_RowChangedName="AccountRowChanged" msprop:Generator_TablePropName="Account" msprop:Generator_RowDeletingName="AccountRowDeleting" msprop:Generator_RowChangingName="AccountRowChanging" msprop:Generator_RowEvHandlerName="AccountRowChangeEventHandler" msprop:Generator_RowDeletedName="AccountRowDeleted" msprop:Generator_RowClassName="AccountRow" msprop:Generator_UserTableName="Account" msprop:Generator_RowEvArgName="AccountRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />

@@ -152,14 +152,16 @@ namespace CoffeeHome
 
         private void InitializeShelfDataGridView()
         {
-            foreach (CoffeeHomeDataSet.ItemShelfRow ItemShelfRow in this.CoffeeHomeDataSet.ItemShelf)
+            foreach (CoffeeHomeDataSet.ItemRow ItemRow in this.CoffeeHomeDataSet.Item)
             {
-                CoffeeHomeDataSet.ItemRow ItemRow = this.CoffeeHomeDataSet.Item.FindByID(ItemShelfRow.ItemID);
-                this.ShelfDataGridView.Rows.Add(
-                    ItemShelfRow.ItemID,
-                    ItemRow.Name,
-                    this.GetItemTypeName(ItemRow.TypeID),
-                    ItemRow.Price);
+                if (ItemRow.OnShelf)
+                {
+                    this.ShelfDataGridView.Rows.Add(
+                        ItemRow.ID,
+                        ItemRow.Name,
+                        this.GetItemTypeName(ItemRow.TypeID),
+                        ItemRow.Price);
+                }
             }
         }
 
@@ -280,11 +282,9 @@ namespace CoffeeHome
 
         private void ShowShelfDataGridView(int TypeID)
         {
-            DataRow[] ItemRows = this.CoffeeHomeDataSet.Item.Select("TypeID = " + TypeID + " AND Name LIKE '*" + this.SearchPattern + "*'");
+            DataRow[] ItemRows = this.CoffeeHomeDataSet.Item.Select("OnShelf = 1 AND TypeID = " + TypeID + " AND Name LIKE '*" + this.SearchPattern + "*'");
             foreach (CoffeeHomeDataSet.ItemRow ItemRow in ItemRows)
             {
-                CoffeeHomeDataSet.ItemShelfRow ItemShelfRow = this.CoffeeHomeDataSet.ItemShelf.FindByItemID(ItemRow.ID);
-                if (ItemShelfRow == null) continue;
                 this.ShelfDataGridView.Rows.Add(
                     ItemRow.ID,
                     ItemRow.Name,
